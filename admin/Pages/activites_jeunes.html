@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin activites jeunes </title>
+    <link rel="stylesheet" href="../css/activites_jeunes.css">
+</head>
+<body>
+
+    <header class="entete_navigation">
+        <div class="logos">
+            <img class="logo" src="../image/logo.jpg" alt="" srcset=""> 
+            <nav class="Leslien_de_Navigation">
+                <ul class="Leslien_de_Navigation">
+                  <li class="menu" data-value = "AJOUTER PROGRAMME DE LE SEMAINE"> AJOUTER PROGRAMME DE LA SEMAINE </li>
+                  <li class="menu" data-value = "AJOUTER ACTIVITES DES HOMMES"> AJOUTER ACTIVITES DES HOMMES</li>
+                  <li class="menu" data-value = "AJOUTER ACTIVITES DES JEUNES">AJOUTER ACTIVITES DES JEUNES</li>
+                  <li class="menu" data-value = "AJOUTER ACTIVITES DES FEMMES"> AJOUTER ACTIVITES DES FEMMES</li>
+                  <li class="menu" data-value = "AJOUTER ACTIVITES DES FEMMES"> AJOUTER ACTIVITES DE LA CHORALE</li>
+                  <li class="menu" data-value = "AJOUTER LA GALERIE"> AJOUTER LA GALERIE</li>
+                  <li class="menu" data-value = "AJOUTER LE PROJET">AJOUTER LE PROJET</li>
+                </ul>
+              </nav>
+        </div>
+    </header>
+    <h1 class="paroisse">PAROISSE AUTONOME DE MELEN</h1>
+
+    <section class="formulaire_saire_enregistrement">
+        <p class="titre">FORMULAIRE POUR SAISIR LES ACTIVITES DES JEUNES </p>
+        <form action="" class="formulaire_saire formulaire_saire1">
+            <select name="jour" id="" class="champ_jour">
+                <option value="">SELECTIONNEZ LE JOUR DE L'ACTIVITE</option>
+                <option value="LUNDI">LUNDI</option>
+                <option value="MARDI">MARDI</option>
+                <option value="MERCREDI">MERCREDI</option>
+                <option value="JEUDI">JEUDI</option>
+                <option value="VENDREDI">VENDREDI</option>
+                <option value="SAMEDI">SAMEDI</option>
+                <option value="DIMANCHE">DIMANCHE</option>
+            </select>
+            <input type="date" class="champ_saisi_date champ_saisi_date" name="nom_1" id="" placeholder="heure">
+            <label for="input-file" class="label-image">Ajouter photo</label>
+            <img src="../image/images.png" alt="" id="image_ajouter"> 
+            <input type="file" name="file" class="file" accept="image/jpeg, image/png ,image/jpg" id="input-file">
+            <textarea class="champ_saisi champ_saisi_nom0" name="nom" id="" cols="30" rows="10" placeholder="SAISISSEZ La DESCRIPTION DE L'ACTIVITE ICI"></textarea>
+            <input type="time" class=" champ_saisi_heure champ_saisi_heure0" name="nom_1" id="" placeholder="heure" cacher="0">
+            <button class="moins0 supprimer_champ moins" cacher="0">-</button>
+
+        </form>
+        <div class="gestion_bouton">
+            <button class="enregistrer">ENREGISTRER</button>
+            <button class="clique_ajouter_formulaire_saisir plus">+</button>
+        </div>
+    </section>
+
+
+    <section class="modifier_activite">
+        <div class="modifier_formulaire_saire_enregistrement">
+            <p class="titre">FORMULAIRE POUR LA MODIFICATION DES ACTIVITES DES JEUNES</p>
+            <form action="" class=" formulaire_saire formulaire_saire2 formulaire_saire1">
+                <select name="jour" id="" class="champ_modifier">
+                    <option value="">SELECTIONNEZ LE JOUR DE L'ACTIVITE</option>
+                    <option value="LUNDI">LUNDI</option>
+                    <option value="MARDI">MARDI</option>
+                    <option value="MERCREDI">MERCREDI</option>
+                    <option value="JEUDI">JEUDI</option>
+                    <option value="VENDREDI">VENDREDI</option>
+                    <option value="SAMEDI">SAMEDI</option>
+                    <option value="DIMANCHE">DIMANCHE</option>
+                </select>
+                <input type="date" class="champ_saisi_date champ_modifier_date" name="nom_1" id="" placeholder="heure">
+                <label for="input-file1" class="label-image">Ajouter photo</label>
+                <img src="../image/images.png" alt="" id="image_ajouter1"> 
+                <input type="file" name="file" class="file fil" accept="image/jpeg, image/png ,image/jpg" id="input-file1">
+                <textarea class="champ_saisi champ_modifier_nom0" name="nom" id="" cols="30" rows="10" placeholder="SAISISSEZ LE NOM DE L'ACTIVITE ICI"></textarea>
+                <input type="time" class=" champ_saisi_heure champ_modifier_heure0" name="nom_1" id="" placeholder="heure">
+                <button class="moins0 supprimer_champ moins" cacher="0">-</button>
+                
+    
+            </form>
+            <div class="gestion_bouton">
+                <button class=" valider_modification">MODIFIER</button>
+                <!-- <button class=" annuller_modification">ANNULLER LA MODIFICATION</button> -->
+                <button class="ajouter">+</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="teste">
+
+    </section>
+
+    <div  class="confiermer_supprimer">
+        <div class="confiermer">
+            <span> VOULEZ VOUS </span>
+            <span> SUPPRIMER CET ACTIVITE ?</span>
+            <p> <span class="non">Non </span> <span class="oui">Oui</span> </p>
+        </div>
+    </div>
+
+    <div  class="confiermer_modifier">
+        <div class="confiermer">
+            <span> VOULEZ VOUS </span>
+            <span> MODIFIER L'ACTIVITE ?</span>
+            <p> <span class="non_modifier">Non </span> <span class="oui_modifier">Oui</span> </p>
+        </div>
+    </div>
+    <div  class="champ_vide">
+        <div class="alerte_champ_vide">
+            <span> VEILLEZ REMPLIRE BIEN LES CHAMPS S'IL VOUS PLAIT  </span>
+            <span> CAR LES INFORMATIONS NE SERONT PAS ENREGISTRER CLIQUER SUR OK  </span>
+            <span>POUR COMPLETER  </span>
+            <p> <span class="recommence">OK</span> </p>
+        </div>
+    </div>
+  
+  
+</body>
+<script src="../js/activites_jeunes.js"></script>
+</html>
