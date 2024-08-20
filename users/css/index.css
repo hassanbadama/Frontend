@@ -363,6 +363,9 @@ a{
     font-family: sans-serif;
     font-size: 30px;
 }
+.toggle{
+    display: none;
+}
 
 @media (max-width:900px) {
     .navigation {
