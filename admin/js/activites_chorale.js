@@ -107,7 +107,7 @@ function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
   Formdata.append("image", image)
   console.log(tableau);
   console.log(jour_activite);
-  fetch("http://localhost:3000/api/auth/activites_hommes", {
+  fetch("http://localhost:3000/api/auth/activites_chorale", {
     method: 'POST',
     headers: { "Authorization": "Bearer" },
     body: Formdata
@@ -123,7 +123,7 @@ function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
         })
       }
       else {
-        document.location.href = `activites_hommes.html`;
+        document.location.href = `activites_chorale.html`;
         console.log("*****BONNNNNNN******");
       }
     })
@@ -131,19 +131,19 @@ function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
 }
 
 // //appel de la fonction pour afficher activites
-Afficher_activites_femmes()
+Afficher_activites_chorale()
 
 //Afficher  activite
-function Afficher_activites_femmes() {
+function Afficher_activites_chorale() {
   //pour donner le noms des classes differents pour les affichage
   let idheure = 0
   let idnom = 0
 
   let tableau_jour = ["LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"]
-  fetch("http://localhost:3000/api/auth/Afficher_activites_hommes")
+  fetch("http://localhost:3000/api/auth/Afficher_activites_chorale")
     .then((res) => res.json())
     .then((data) => {
-      console.log("Afficher_programme_semaine");
+      console.log("Afficher_chorale");
       console.log(data);
       for (let k = 0; k <= tableau_jour.length - 1; k++) {
         for (let i of data) {
@@ -161,8 +161,8 @@ function Afficher_activites_femmes() {
 
       }
 
-      suppression_activites_hommes()
-      modifier_activites_hommes()
+      suppression_activites_chorale()
+      modifier_activites_chorale()
       supprimer_champ()
     });
 
@@ -171,7 +171,7 @@ function Afficher_activites_femmes() {
 //fonction pour construire affichage des activites
 function construction_affiche_activite(jour, image, tab, date, id_activite, idheure, idnom) {
   const construire = `<div class="affiche_programme_semaine fermer_affecher">
-  <p class="titre"> <span> ACTIVITES DES HOMMES POUR LA JOURNEE DU ${jour} ${date=="undefined-undefined-"?"":date}  </span> <span class ="edith modifier" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></span>  <span class ="delete supprimer" data-value="${id_activite}"> <i class="fa-solid fa-trash" data-value="${id_activite}"></i> </span>     </p>
+  <p class="titre"> <span> ACTIVITES DE CHORALE POUR LA JOURNEE DU ${jour} ${date=="undefined-undefined-"?"":date}  </span> <span class ="edith modifier" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></span>  <span class ="delete supprimer" data-value="${id_activite}"> <i class="fa-solid fa-trash" data-value="${id_activite}"></i> </span>     </p>
   <div class="disposition_afficher">
       <div class="affiche_programmess_jour_image">
          <div class="jour_image">
@@ -224,7 +224,7 @@ function construire_description_heure(tableau_activite, idheure, idnom) {
 
 
 //supprimer activite
-function suppression_activites_hommes() {
+function suppression_activites_chorale() {
   const supprimer = document.querySelectorAll(".supprimer")
   supprimer.forEach((el) => {
     console.log("element");
@@ -233,7 +233,7 @@ function suppression_activites_hommes() {
       document.querySelector(".confiermer_supprimer").style.display = "block"
       //clique sur oui pour valider la suppression de activité
       document.querySelector(".oui").addEventListener("click", function (event) {
-        fetch(`http://localhost:3000/api/auth/suppression_activites_hommes/${id}`, {
+        fetch(`http://localhost:3000/api/auth/suppression_activites_chorale/${id}`, {
           method: "DELETE",
           headers: { "Authorization": "Bearer" }
         })
@@ -243,7 +243,7 @@ function suppression_activites_hommes() {
             console.log("oui supprimer avec succee")
             console.log(data)
             //redirection
-           document.location.href = `activites_hommes.html`;
+           document.location.href = `activites_chorale.html`;
           })
       })
 
@@ -258,7 +258,7 @@ function suppression_activites_hommes() {
 }
 
 //modifier activite
-function modifier_activites_hommes() {
+function modifier_activites_chorale() {
   //id pour le valeur de modification
   let id
   const modifier = document.querySelectorAll(".modifier")
@@ -276,7 +276,7 @@ function modifier_activites_hommes() {
         document.querySelector(".formulaire_saire_enregistrement").style.display = "none"
         //fermer affichage des activite
         document.querySelector(".crocher_affichage").style.display = "none"
-        fetch(`http://localhost:3000/api/auth/Recherche_pour_supprimer_activites_hommes/${id}`)
+        fetch(`http://localhost:3000/api/auth/Recherche_pour_supprimer_activites_chorale/${id}`)
           .then((res) => res.json())
           .then((data) => {
             compteur_nombre_champs_modifier = data.tableau_activite.length
@@ -369,7 +369,7 @@ function modifier_activites_hommes() {
     Formdata.append("image", image.files[0])
     //si les champs de modifications des activites sont bien rempli
     if (validation_modification) {
-      fetch(`http://localhost:3000/api/auth/modifier_activites_hommes/${id}`, {
+      fetch(`http://localhost:3000/api/auth/modifier_activites_chorale/${id}`, {
         method: 'put',
         headers: {
           "Authorization": "Bearer",
@@ -378,7 +378,7 @@ function modifier_activites_hommes() {
       }).then((res) => res.json())
         .then((data) => {
           console.log("modifier avec succee");
-          document.location.href = `activites_hommes.html`;
+          document.location.href = `activites_chorale.html`;
         })
     }
     else {

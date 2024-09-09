@@ -1,18 +1,23 @@
 
 //fonction pour construire affichage des activites
 function construction_affiche_activite(jour,image,tab,date,idnom) {
+  let dataInitial = ""
+  let jourInitial = ""
+  jourInitial = jour == "undefined-undefined-"?"":jour
+  dataInitial = date == "undefined-undefined-"?"":date
     const creer = `<div class="affiche_programme_semaine fermer_affecher">
-    <p class="titre">ACTIVITEs DES HOMMES  ${jour} LE ${date} </p>
+    <p class="titre">ACTIVITES DES FEMMES ${jourInitial} LE ${dataInitial} </p>
     <div class="cards_flex ${idnom}">
 
       </div>
     </div> `
     const creaction_affichage_activite = document.querySelector(".crocher")
     creaction_affichage_activite.insertAdjacentHTML("beforeend", creer)
-    construire_nom_heure(tab, image,idnom)
+    construire_nom_heure(tab, image,idnom,jourInitial, dataInitial)
 }
 
-function construire_nom_heure(tableau_activite,image,idnom) {
+function construire_nom_heure(tableau_activite,image,idnom,jour, date) {
+
   for (let j = 0; j <= tableau_activite.length - 1; j++) {
     //construction de activite a savoir  heure nom actvite theme de actvite
     if (tableau_activite[j]) {
@@ -20,6 +25,7 @@ function construire_nom_heure(tableau_activite,image,idnom) {
       const creer = `       
        <div class="card">
           <div> <img src="${image}" alt="" srcset=""> </div>
+           <div><span class="date_description"> ${jour} ${date}</span></div>
           <div class="heure"><span>HEURE: <span>${tableau_activite[j][1]}</span> </span></div>
           <div><span>${tableau_activite[j][0]}</span></div>
        </div> `
@@ -36,7 +42,7 @@ function afficher_programmes_semaine(){
   //pour donner le noms des classes differents pour les affichage
    let idnom = 0
     let tableau_jour = ["LUNDI","MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI","DIMANCHE"]
-    fetch("http://localhost:3000/api/auth/Afficher_activites_hommes")
+    fetch("http://localhost:3000/api/auth/Afficher_programmes_semaine")
     .then((res) => res.json())
     .then((data) => {
     console.log("Afficher_programme_semaine");
@@ -53,3 +59,10 @@ function afficher_programmes_semaine(){
     }
  });
 }
+
+
+const toggle = document.querySelector(".toggle");
+let body = document.querySelector("body");
+toggle.addEventListener("click", function (event){
+  body.classList.toggle("open")
+})

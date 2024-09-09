@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>les responsables de l'eglise</title>
+	<link rel="stylesheet" href="../css/responsables.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.bootstrap5.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<div class="flex">
+		<header class="head">
+			<nav class="nav">
+				<div class="display_pour_mobile">
+					<img class="logo" src="../image/logo.jpg" alt="">
+					<div class="toggle">
+						<i class="fa-solid fa-bars ouvrir"></i>
+						<i class="ferme fa-solid fa-xmark"></i>
+					</div>
+				</div>
+				<ul class="change_pour_mobile">
+					<li class="menu-activite"><a href="../Pages/programme_semaine.html">PROGRAMME DE LA SEMAINE</a></li>
+					<li class="menu-activite"><a href="../Pages/responsables_eglise.html">LES RESPONSABLES DE L'EGLISE</a></li>
+					<li class="menu-activite"><a href="../Pages/projets.html">PROJET</a></li>
+					<li class="menu-activite"><a href="#">GALERIE</a></li>
+					<li class="menu-activite"><a href="../Pages/activite_communaute.html">ACTIVITES DES COMMUNAUTES</a></li>
+					<li class="menu-activite"><a href="../Pages/responsables_communaute.html">RESPONSABLES DES COMMUNAUTES</a></li>
+					<li class="menu-deroulant"><a href="#">ACTIVITES DE L'EGLISE</a>
+						<ul class="sousmenu">
+							<li><a href="../Pages/activites_hommes.html">ACTIVITES DES HOMMES</a></li>
+							<li><a href="../Pages/activites_femmes.html">ACTIVITES DES FEMMES</a></li>
+							<li><a href="../Pages/activites_jeunes.html">ACTIVITES DES JEUNES</a></li>
+							<li><a href="../Pages/activites_chorale.html">ACTIVITES DES CHORALE</a></li>
+						</ul>
+					</li>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="contenu">
+			<div class="container">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>Les responsables de l'eglise </b></h2>
+						</div>
+						<div class="col-sm-6">
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
+									class="material-icons">&#xE147;</i> <span>Ajouter responsable</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<table id="example" class="table table-striped nowrap">
+						<thead>
+							<tr>
+								<th>Actions</th>
+								<th>Noms</th>
+								<th>Prenoms</th>
+								<th>Fonctions</th>
+								<th>Contacts</th>
+								<th>Quartiers</th>
+								<th>Photos</th>
+							</tr>
+						</thead>
+						<tbody class="crocher_affichage_admin">
+
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<!-- Edit Modal HTML -->
+			<div id="addEmployeeModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form>
+							<div class="modal-header">
+								<h4 class="modal-title">Ajouter responsable</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<span class="champ_vid"></span>
+								<div class="form-group">
+									<label>Nom:</label>
+									<input type="text" class="form-control nom" placeholder="Nom" required="required">
+								</div>
+								<div class="form-group">
+									<label>Prenom:</label>
+									<input type="text" class="form-control prenom" placeholder="Prenom"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Fonction:</label>
+									<input type="text" class="form-control fonction" placeholder="Fonction"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Contact:</label>
+									<input type="text" class="form-control contact" placeholder="Contact"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Quartier:</label>
+									<input type="text" class="form-control quartier" placeholder="Quartier"
+										required="required">
+								</div>
+
+								<div class="form-group">
+									<label>Votre photo</label>
+									<input type="file" class="form-control file" placeholder="Password"
+										required="required">
+								</div>
+								<span class="champ_vide"></span>
+							</div>
+
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+								<input type="submit" class="btn btn-success ajouter" value="Ajouter">
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- Edit Modal HTML -->
+			<div id="editEmployeeModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form>
+							<div class="modal-header">
+								<h4 class="modal-title">Modifier responsable de l'eglise</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+
+							<div class="modal-body">
+								<span class="champ_vid"></span>
+								<div class="form-group">
+									<label>Nom:</label>
+									<input type="text" class="form-control nom_edit" placeholder="Nom"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Prenom:</label>
+									<input type="text" class="form-control prenom_edit" placeholder="Prenom"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Fonction:</label>
+									<input type="text" class="form-control fonction_edit" placeholder="Fonction"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Contact:</label>
+									<input type="text" class="form-control contact_edit" placeholder="Contact"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Quartier:</label>
+									<input type="text" class="form-control quartier_edit" placeholder="Quartier"
+										required="required">
+								</div>
+
+								<div class="form-group">
+									<label>Votre photo</label>
+									<input type="file" class="form-control file_edit" placeholder="Password"
+										required="required">
+								</div>
+								<span class="champ_vide"></span>
+							</div>
+
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+								<input type="submit" class="btn btn-info valider_modifier" value="Modifier">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- Delete Modal HTML -->
+			<div id="deleteEmployeeModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form>
+							<div class="modal-header">
+								<h4 class="modal-title">Supprimer un responsable</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p>Voulez vous supprimer ce responsable ?</p>
+								<p class="text-warning"><small>Cliquer sur annuler pour annuler ou sur supprimer pour
+										supprimer</small></p>
+							</div>
+							<div class="modal-footer">
+								<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuller">
+								<input type="submit" class="btn btn-danger supprimer_admin" value="Supprimer">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+	<script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
+	<script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
+	<script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
+	<script src="../js/responsable.js"></script>
+</body>
+
+</html>

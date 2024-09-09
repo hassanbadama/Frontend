@@ -1,0 +1,554 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    list-style: 0;
+    text-decoration: none;
+} */
+
+body {
+	font-family: 'Source code pro', Calibri, serif;
+	margin: 0px;
+	padding: 0px;
+}
+.logo {
+    width: 100%;
+    border-radius: 50%;
+    height: 80px;
+}
+.toggle{
+    display: none;
+}
+
+.head {
+    padding: 1px 19px;
+    display: flex;
+    justify-content: space-between;
+    background: #040430;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    height: 80px;
+}
+
+nav {
+	/* width: 100%; */
+	/* background-color: #000080; */
+}
+
+nav>ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+nav>ul::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+nav>ul>li {
+	float: left;
+	position: relative;
+	list-style-type: none;
+}
+
+nav>ul>li>a {
+	padding: 20px 30px;
+	color: #FFFFFF;
+}
+
+nav>ul>li:hover a {
+	padding: 15px 30px 20px 30px;
+}
+
+li {
+	list-style-type: none;
+}
+
+.submenu {
+	display: none;
+}
+
+nav a {
+	display: inline-block;
+	text-decoration: none;
+}
+
+nav li:hover .submenu {
+	display: inline-block;
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	padding: 0px;
+	z-index: 1000;
+}
+
+.submenu li {
+	border-bottom: 1px solid #008000;
+}
+
+.submenu li a {
+	padding: 15px 30px;
+	font-size: 10px;
+	color: #000080;
+	width: 270px;
+}
+
+.menu-javascript:hover {
+	border-top: 5px solid #F1DC4F;
+	background-color: RGBa(241, 211, 79, 0.15);
+}
+
+.menu-contact:hover {
+	border-top: 5px solid #BBB;
+	background-color: RGBa(220, 220, 200, 0.15);
+}
+
+
+.menu-javascript .submenu {
+	background-color: RGB(250, 215, 100);
+}
+
+.submenu li:hover a {
+	color: #EEE;
+	font-weight: bold;
+}
+
+
+a{
+    text-decoration: none;
+ }
+ 
+ 
+ .crocher{
+    margin-top: 3%;
+ }
+.paroisse{
+    text-align: center;
+    color: #004eff;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+
+.titre{
+    background-color: #0140ff;
+    padding: 10px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+.affiche_programme_semaine {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 92%;
+    background: white;
+    border: solid 1px rgb(0, 8, 255);
+    border-radius: 10px;
+    margin: 14px auto;
+}
+.cards_flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 25%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    background-color: #eef2fd;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+.card img{
+    width: 100%;
+}
+.heure {
+    background: white;
+    width: 100%;
+    color: blue;
+    padding: 9px 1px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.description_activite{
+ 
+}
+.date_description {
+    font-size: 10px;
+    color: red;
+    /* margin: 0px; */
+    /* padding: 0px; */
+    position: absolute;
+    font-family: sans-serif;
+}
+
+
+
+/* mobile */
+.toggle{
+    display: none;
+}
+@media (max-width:900px) {
+
+    .change_pour_mobile {
+        display: flex;
+        flex-direction: column;
+        background: #fffffff5;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 1px;
+        transform: translateX(-100%);
+        transition: 1s;
+    }
+    .change_pour_mobile li {
+        border-bottom: 1px solid #008000;
+    }
+    .menu-contact {
+        border-top: 5px solid #0026ff;
+        background-color: rgb(240, 240, 246)
+    }
+    .menu-contact:hover {
+        background-color: rgb(237 228 157 / 60%);
+        /* border-top: 5px solid #0026ff;
+        background-color: rgb(240, 240, 246) */
+    }
+    nav>ul>li>a {
+        padding: 10px 17px;
+        color: #3b5fff;
+    }
+    .open .change_pour_mobile{
+        transform: translateX(0);
+        font-size: 40px;
+    }
+    .display_pour_mobile{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .head{
+        display: flex;
+        flex-direction: column;
+        background: rgb(255, 255, 255);
+    }
+    .crocher {
+        margin-top: 12%;
+    }
+    .submenu li a {
+        font-size: 34px;
+        width: 100%;
+    }
+
+    .logo {
+        width: 18%;
+        border-radius: 50%;
+        z-index: 1;
+        height:90%;
+        margin: 10px 1px;
+    }
+    .toggle{
+        display: block;
+        z-index: 1;
+        color: rgb(0, 0, 0);
+        margin: 10px 1px;
+    }
+    .ouvrir{
+        display: block;
+    }
+    .ferme{
+        display: none !important;
+    }
+    .open .ouvrir{
+         display: none;
+    }
+    .open .ferme{
+        display: block !important;
+        color: rgb(0, 4, 255);
+    }
+    .open .date_description {
+        z-index: -1;
+    }
+
+    .toggle{
+        font-size: 90px;
+    }
+    .paroisse {
+        font-size: 40px;
+    }
+    .card {
+        width: 42%;
+        font-size: 30px;
+    }
+    .titre {
+        font-size: 30px;
+    }
+    .heure {
+        font-size: 26px;
+    }
+}
+
+@media (max-width:500px) {
+    .paroisse {
+        font-size: 26px;
+    }
+    
+    .open .change_pour_mobile{
+        transform: translateX(0);
+        font-size: 25px;
+    }
+    .submenu li a {
+        font-size: 23px;
+        width: 100%;
+    }
+
+    .open .date_description {
+        z-index: -1;
+    }
+    .logo {
+        margin-top: 2%;
+        width: 20%;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .toggle{
+        margin-top: 3%;
+        display: block;
+        z-index: 1;
+    }
+    .ouvrir{
+        display: block;
+    }
+    .ferme{
+        display: none !important;
+    }
+    .open .ouvrir{
+         display: none;
+    }
+    .open .ferme{
+        display: block !important;
+    }
+
+    .toggle{
+        font-size: 50px;
+    }
+    .card {
+        margin-top: 5px;
+        width: 88%;
+        font-size: 30px;
+    }
+    .titre {
+        font-size: 20px;
+    }
+    .heure {
+        font-size: 17px;
+        height: 15px;
+        background: white;
+        color: blue;
+    }
+    .description_activite {
+        font-size: 23px;
+    }
+}
+
+
+
+@media (max-width:400px) {
+    .paroisse {
+        font-size: 25px;
+    }
+    .open .change_pour_mobile {
+        transform: translateX(0);
+        font-size: 20px;
+        /* margin-top: 43%; */
+    }
+    .submenu li a {
+        font-size: 20px;
+        width: 100%;
+    }
+    
+    nav>ul>li>a {
+        padding: 10px 17px;
+    }
+    .submenu li a {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .open .date_description {
+        z-index: -1;
+    }
+    .logo {
+        width: 20%;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .toggle{
+        display: block;
+        z-index: 1;
+    }
+    .ouvrir{
+        display: block;
+    }
+    .ferme{
+        display: none !important;
+    }
+    .open .ouvrir{
+         display: none;
+    }
+    .open .ferme{
+        display: block !important;
+    }
+
+    .toggle{
+        font-size: 40px;
+    }
+
+    .card {
+        width: 88%;
+        font-size: 30px;
+    }
+    .titre {
+        font-size: 20px;
+    }
+    .heure {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width:350px) {
+    .paroisse {
+        font-size: 18px;
+    }
+
+    .open .change_pour_mobile {
+        transform: translateX(0);
+        font-size: 15px;
+        /* margin-top: 43%; */
+    }
+    .submenu li a {
+        font-size: 15px;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    nav>ul>li>a {
+        padding: 10px 17px;
+    }
+
+    .logo {
+        width: 20%;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .toggle{
+        display: block;
+        z-index: 1;
+    }
+    .ouvrir{
+        display: block;
+    }
+    .ferme{
+        display: none !important;
+    }
+    .open .ouvrir{
+         display: none;
+    }
+    .open .ferme{
+        display: block !important;
+    }
+
+    .toggle{
+        font-size: 30px;
+    }
+    .menu:hover{
+        padding: 4px;
+    }
+    .card {
+        width: 88%;
+        font-size: 30px;
+    }
+    .titre {
+        font-size: 18px;
+    }
+    .heure {
+        font-size: 18px;
+    }
+    .description_activite {
+        font-size: 18px;
+    }
+}
+
+/* footer */
+
+
+.social-icons{
+    display: flex;
+    justify-content: center;
+  }
+  .social-icons a{
+    font-size: 45px;
+    margin: 1px 15px;
+    color: white;
+    
+  }
+  .social-icons a :hover{
+    color: #0011ff;
+  
+  }
+  .footer {
+    background: linear-gradient(to right, #D25959, #4b0082);
+    color: #fff;
+    padding: 50px 0;
+    transition: 0.2s;
+  }
+  .footer_lien{
+    display: flex;
+    justify-content: space-around;
+  
+  }
+  .footer_lien a{
+    color: white;
+  
+  }
+  .copyright{
+    text-align: center;
+  }
+  
+  @media (max-width:900px) {
+  
+    .social-icons a{
+      font-size: 35px;
+      margin: 10px;
+    }
+    .footer_lien{
+      display: flex;
+      flex-direction: column;
+    }
+    .footer_lien li{
+      border-top: 2px solid #874c4c66;
+      margin: 5px;
+    }
+  }

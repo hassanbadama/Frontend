@@ -311,7 +311,7 @@ a{
     }
 
     .toggle{
-        font-size: 60px;
+        font-size: 50px;
     }
     .menu{
         background-color: transparent;
@@ -331,5 +331,162 @@ a{
     }
     .heure {
         font-size: 30px;
+    }
+}
+
+
+
+@media (max-width:400px) {
+    .paroisse {
+        font-size: 30px;
+    }
+    .navigation {
+        justify-content: space-between;
+    }
+    .apparait_dans_mobile{
+        display: block !important;
+    }
+    #sou_menu{
+        display: none !important;
+    }
+    .Leslien_de_Navigation{
+       display: flex;
+       flex-direction: column;
+       position: absolute;
+       background: #ffffff;
+       width: 100%;
+       height: 100%;
+       left: -23px;
+       right: 0;
+       top: 40px;
+       transform: translateX(-100%);
+       transition: 1s;
+    }
+    .open .Leslien_de_Navigation{
+        transform: translateX(0);
+    }
+    .logo {
+        width: 20%;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .toggle{
+        display: block;
+        z-index: 1;
+    }
+    .ouvrir{
+        display: block;
+    }
+    .ferme{
+        display: none !important;
+    }
+    .open .ouvrir{
+         display: none;
+    }
+    .open .ferme{
+        display: block !important;
+    }
+
+    .toggle{
+        font-size: 40px;
+    }
+    .menu{
+        background-color: transparent;
+        color: #0602ff !important;
+        font-size: 20px;
+        margin: 0px;
+    }
+    .menu:hover{
+        padding: 14px;
+    }
+    .card {
+        width: 88%;
+        font-size: 30px;
+    }
+    .titre {
+        font-size: 25px;
+    }
+    .heure {
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width:350px) {
+    .paroisse {
+        font-size: 20px;
+    }
+    .navigation {
+        justify-content: space-between;
+    }
+    .apparait_dans_mobile{
+        display: block !important;
+    }
+    #sou_menu{
+        display: none !important;
+    }
+    .Leslien_de_Navigation{
+       display: flex;
+       flex-direction: column;
+       position: absolute;
+       background: #ffffff;
+       width: 100%;
+       height: 100%;
+       left: -20px;
+       right: 0;
+       top: 30px;
+       transform: translateX(-100%);
+       transition: 1s;
+    }
+    .open .Leslien_de_Navigation{
+        transform: translateX(0);
+    }
+    .logo {
+        width: 20%;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .toggle{
+        display: block;
+        z-index: 1;
+    }
+    .ouvrir{
+        display: block;
+    }
+    .ferme{
+        display: none !important;
+    }
+    .open .ouvrir{
+         display: none;
+    }
+    .open .ferme{
+        display: block !important;
+    }
+
+    .toggle{
+        font-size: 30px;
+    }
+    .menu{
+        background-color: transparent;
+        color: #0602ff !important;
+        font-size: 20px;
+        margin: 3px 19px;
+        padding: 3px;
+    }
+    .menu:hover{
+        padding: 4px;
+    }
+    .card {
+        width: 88%;
+        font-size: 30px;
+    }
+    .titre {
+        font-size: 20px;
+    }
+    .heure {
+        font-size: 20px;
+    }
+    .card div span{
+        font: 20px;
     }
 }

@@ -1,3 +1,7 @@
+// const token = localStorage.getItem("code")
+// if (!token) {
+//   document.location.href = `connecter.html`;
+// }
 //clique pour ajour que le formulaire ajouter activite ouvre
 document.querySelector(".ajouter_activite_btn").addEventListener("click", function (event) {
   document.querySelector(".formulaire_saire_enregistrement").style.display = "block"
@@ -21,7 +25,7 @@ document.querySelector(".ajouter").addEventListener("click", function (event) {
 //k ici permet de faire la distinction entre ajouter champs de saisir etant sur la page de modification ou sur la page enregistrer activite
 function construction_de_formulaire(i, k) {
   let ajouter_champ = `
-  <textarea class="champ_saisi champ_saisi_nom${i} champ_modifier_nom${i}" name="nom" id="" cols="30" rows="10" placeholder="SAISISSEZ LA DESCRIPTION DE L'ACTIVITE ICI"></textarea>
+  <textarea class="champ_saisi champ_saisi_nom${i} champ_modifier_nom${i}" name="nom" id="" cols="30" rows="10" placeholder="SAISISSEZ LA DESCRIPTION DE PROGRAMME DE LA SEMAINE"></textarea>
   <input type="time" class="champ_saisi_heure champ_saisi_heure${i} champ_modifier_heure${i}" name="nom_1" id="" placeholder="heure">
   <button class="moins${i} supprimer_champ moins" cacher="${i}">-</button>
   `
@@ -32,7 +36,7 @@ function construction_de_formulaire(i, k) {
 
 
 
-//clik pour enregistre une actvité
+//clik pour enregistre programmes_semaine
 document.querySelector(".enregistrer").addEventListener("click", function (event) {
   let tableau = []
   let indice = 0
@@ -69,12 +73,12 @@ document.querySelector(".enregistrer").addEventListener("click", function (event
   //tester il ya pas de champs vide
   if (validation) {
     if (image.files[0] && jour_activite.value) {
-      // appel fonction pour enregistrer une activite
-      Enregistrer_activite(tableau, jour_activite.value, date_activite, image.files[0])
+      // appel fonction pour enregistrer programmes_semaine
+      Enregistrer_programme(tableau, jour_activite.value, date_activite, image.files[0])
       console.log("oui");
     }
     else {
-      //alerte lorsqu'on n'a pas ajouter image pour une activité
+      //alerte lorsqu'on n'a pas ajouter image pour programmes_semaine
       Gestion_des_erreur_champs_vides( "AJOUTER PHOTO", "", "")
       document.querySelector(".champ_vide").style.display = "block"
       document.querySelector(".recommence").addEventListener("click", function (event) {
@@ -97,8 +101,8 @@ document.querySelector(".enregistrer").addEventListener("click", function (event
 })
 
 
-//fonction pour ajouter une activité
-function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
+//fonction pour ajouter programmes_semaine
+function Enregistrer_programme(tableau, jour_activite, date_activite, image) {
 
   let Formdata = new FormData()
   Formdata.append("jour_activite", jour_activite)
@@ -107,9 +111,9 @@ function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
   Formdata.append("image", image)
   console.log(tableau);
   console.log(jour_activite);
-  fetch("http://localhost:3000/api/auth/activites_hommes", {
+  fetch("http://localhost:3000/api/auth/programmes_semaine", {
     method: 'POST',
-    headers: { "Authorization": "Bearer" },
+    headers: { "Authorization": `Bearer` },
     body: Formdata
   }).then((res) => res.json())
     .then((data) => {
@@ -123,24 +127,23 @@ function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
         })
       }
       else {
-        document.location.href = `activites_hommes.html`;
+        document.location.href = `programme_semaine.html`;
         console.log("*****BONNNNNNN******");
       }
     })
 
 }
 
-// //appel de la fonction pour afficher activites
-Afficher_activites_femmes()
-
+// //appel de la fonction pour afficher programmes_semaine
+Afficher_programme_semaine()
 //Afficher  activite
-function Afficher_activites_femmes() {
+function Afficher_programme_semaine() {
   //pour donner le noms des classes differents pour les affichage
   let idheure = 0
   let idnom = 0
 
   let tableau_jour = ["LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"]
-  fetch("http://localhost:3000/api/auth/Afficher_activites_hommes")
+  fetch("http://localhost:3000/api/auth/Afficher_programmes_semaine")
     .then((res) => res.json())
     .then((data) => {
       console.log("Afficher_programme_semaine");
@@ -161,17 +164,17 @@ function Afficher_activites_femmes() {
 
       }
 
-      suppression_activites_hommes()
-      modifier_activites_hommes()
+      suppression_programme_semaine()
+      modifier_programme_semaine()
       supprimer_champ()
     });
 
 }
 
-//fonction pour construire affichage des activites
+//fonction pour construire affichage programmes_semaine
 function construction_affiche_activite(jour, image, tab, date, id_activite, idheure, idnom) {
   const construire = `<div class="affiche_programme_semaine fermer_affecher">
-  <p class="titre"> <span> ACTIVITES DES HOMMES POUR LA JOURNEE DU ${jour} ${date=="undefined-undefined-"?"":date}  </span> <span class ="edith modifier" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></span>  <span class ="delete supprimer" data-value="${id_activite}"> <i class="fa-solid fa-trash" data-value="${id_activite}"></i> </span>     </p>
+  <p class="titre"> <span> LE PROGRAMME DE LA SEMAINE POUR LA JOURNEE DU ${jour} ${date=="undefined-undefined-"?"":date}  </span> <span class ="edith modifier" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></span>  <span class ="delete supprimer" data-value="${id_activite}"> <i class="fa-solid fa-trash" data-value="${id_activite}"></i> </span>     </p>
   <div class="disposition_afficher">
       <div class="affiche_programmess_jour_image">
          <div class="jour_image">
@@ -197,7 +200,7 @@ function construction_affiche_activite(jour, image, tab, date, id_activite, idhe
 </div>`
   const ajouter = document.querySelector(".crocher_affichage")
   ajouter.insertAdjacentHTML("beforeend", construire)
-  // appel de fonction construire description et heure pour afficher une activite
+  // appel de fonction construire description et heure pour afficher programmes_semaine
   construire_description_heure(tab, idheure, idnom)
 
 }
@@ -223,17 +226,17 @@ function construire_description_heure(tableau_activite, idheure, idnom) {
 
 
 
-//supprimer activite
-function suppression_activites_hommes() {
+//supprimer programmes_semaine
+function suppression_programme_semaine() {
   const supprimer = document.querySelectorAll(".supprimer")
   supprimer.forEach((el) => {
     console.log("element");
     el.addEventListener("click", function (event) {
       let id = event.target.getAttribute("data-value")
       document.querySelector(".confiermer_supprimer").style.display = "block"
-      //clique sur oui pour valider la suppression de activité
+      //clique sur oui pour valider la suppression programmes_semaine
       document.querySelector(".oui").addEventListener("click", function (event) {
-        fetch(`http://localhost:3000/api/auth/suppression_activites_hommes/${id}`, {
+        fetch(`http://localhost:3000/api/auth/suppression_programmes_semaine/${id}`, {
           method: "DELETE",
           headers: { "Authorization": "Bearer" }
         })
@@ -243,13 +246,13 @@ function suppression_activites_hommes() {
             console.log("oui supprimer avec succee")
             console.log(data)
             //redirection
-           document.location.href = `activites_hommes.html`;
+           document.location.href = `programme_semaine.html`;
           })
       })
 
     })
   })
-  //annuller la suppression de activité
+  //annuller la suppression programmes_semaine
   document.querySelector(".non").addEventListener("click", function (event) {
     document.querySelector(".confiermer_supprimer").style.display = "none"
 
@@ -257,8 +260,8 @@ function suppression_activites_hommes() {
 
 }
 
-//modifier activite
-function modifier_activites_hommes() {
+//modifier programmes_semaine
+function modifier_programme_semaine() {
   //id pour le valeur de modification
   let id
   const modifier = document.querySelectorAll(".modifier")
@@ -266,17 +269,17 @@ function modifier_activites_hommes() {
     el.addEventListener("click", function (event) {
       event.preventDefault()
       id = event.target.getAttribute("data-value")
-      // alerte pour confirmer la modification des actives
+      // alerte pour confirmer la modification programmes_semaine
       document.querySelector(".confiermer_modifier").style.display = "block"
-      //pour chercher activié a modifier
+      //pour chercher programmes_semaine a modifier
       document.querySelector(".oui_modifier").addEventListener("click", function (event) {
         document.querySelector(".modifier_activite").style.display = "block"
         document.querySelector(".confiermer_modifier").style.display = "none"
         //fermulaire d'enregistrement
         document.querySelector(".formulaire_saire_enregistrement").style.display = "none"
-        //fermer affichage des activite
+        //fermer affichage programmes_semaine
         document.querySelector(".crocher_affichage").style.display = "none"
-        fetch(`http://localhost:3000/api/auth/Recherche_pour_supprimer_activites_hommes/${id}`)
+        fetch(`http://localhost:3000/api/auth/Recherche_pour_supprimer_programmes_semaine/${id}`)
           .then((res) => res.json())
           .then((data) => {
             compteur_nombre_champs_modifier = data.tableau_activite.length
@@ -328,12 +331,12 @@ function modifier_activites_hommes() {
 
     })
   })
-  //annuller la modification de activite
+  //annuller la modification programmes_semaine
   document.querySelector(".non_modifier").addEventListener("click", function (event) {
     document.querySelector(".confiermer_modifier").style.display = "none"
 
   })
-  //valider la modification pour modifier activite dans bd
+  //valider la modification pour modifier programmes_semaine dans bd
   document.querySelector(".valider_modification").addEventListener("click", function (event) {
     event.preventDefault()
     let indice_nouveau_tableau_mise_jour = 0
@@ -346,7 +349,7 @@ function modifier_activites_hommes() {
         const nom = document.querySelector(".champ_modifier_nom" + k).value;
         const heure = document.querySelector(".champ_modifier_heure" + k).value;
         if (nom && heure) {
-          //tableau pour stocker description activite ,heure_activite pour une date et une journee
+          //tableau pour stocker description programmes_semaine ,heure_activite pour une date et une journee
           tableau_modifier[indice_nouveau_tableau_mise_jour] = [nom, heure]
           indice_nouveau_tableau_mise_jour = indice_nouveau_tableau_mise_jour + 1
         }
@@ -367,9 +370,9 @@ function modifier_activites_hommes() {
     Formdata.append("date_activite", date_activite)
     Formdata.append("tableau_activite", JSON.stringify(tableau_modifier))
     Formdata.append("image", image.files[0])
-    //si les champs de modifications des activites sont bien rempli
+    //si les champs de modifications des programmes_semaine sont bien rempli
     if (validation_modification) {
-      fetch(`http://localhost:3000/api/auth/modifier_activites_hommes/${id}`, {
+      fetch(`http://localhost:3000/api/auth/modifier_programmes_semaine/${id}`, {
         method: 'put',
         headers: {
           "Authorization": "Bearer",
@@ -378,7 +381,7 @@ function modifier_activites_hommes() {
       }).then((res) => res.json())
         .then((data) => {
           console.log("modifier avec succee");
-          document.location.href = `activites_hommes.html`;
+          document.location.href = `programme_semaine.html`;
         })
     }
     else {

@@ -3,40 +3,30 @@ body {
 	font-family: 'Source code pro', Calibri, serif;
 	margin: 0px;
 	padding: 0px;
-    /* background: #070770; */
-}
-.flex{
-    display: flex;
 }
 .logo {
-    width: 30%;
+    width: 100%;
     border-radius: 50%;
     height: 80px;
-}
-.display_pour_mobile{
-    display: flex;
-    justify-content: center;
 }
 .toggle{
     display: none;
 }
 .head {
-    /* padding: 1px 19px; */
-    /* display: flex;
-    justify-content: space-between; */
-    /* background: #2525ff; */
+    padding: 1px 19px;
+    display: flex;
+    justify-content: space-between;
+    background: #2525ff;
     font-size: 14px;
     font-family: sans-serif;
     font-weight: bold;
     height: 80px;
 }
 
-nav {
-    width: 20%;
-    background-color: #000080;
-    position: fixed;
-    height: 100%;
-}
+/* nav {
+	width: 100%; 
+	 background-color: #000080;
+} */
 
 nav>ul {
 	margin: 0px;
@@ -50,15 +40,13 @@ nav>ul::after {
 }
 
 nav>ul>li {
-	/* float: left; */
-    background:#002580;
+	float: left;
 	position: relative;
 	list-style-type: none;
-    margin: 2px;
 }
 
 nav>ul>li>a {
-	padding: 15px 10px;
+	padding: 20px 18px;
 	color: #FFFFFF;
 }
 
@@ -96,7 +84,7 @@ nav li:hover .sousmenu {
 	padding: 15px 20px;
 	font-size: 13px;
 	color: #000080;
-	width: 224px;
+	width: 255px;
 }
 
 .menu-deroulant:hover {
@@ -127,28 +115,11 @@ nav li:hover .sousmenu {
     font-weight: bold;
     cursor: pointer;
 }
-.contenu{
-    margin-left: 260px;
-    position: static;
-    width: 100%;
-}
-
-.ajouter_activite_btn {
-    margin-left: 61px;
-    width: 31%;
-    background: #339399;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 1s;
-}
-.ajouter_activite_btn:hover{
-    background: #0026ff;
+.paroisse{
+    text-align: center;
+    color: #004eff;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 .formulaire_saire_enregistrement {
@@ -156,16 +127,8 @@ nav li:hover .sousmenu {
     width: 90%;
     margin: auto;
     border-radius: 10px;
-    border: 2px solid #0040ff9c;
-    /* padding: 10px; */
-    display: none;
-    background: #b2b2d68c;
-}
-.formulaire_saire {
-    display: flex;
-    justify-content: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    border: 6px solid #0040ff9c;
+    padding: 10px;
 }
 .modifier_formulaire_saire_enregistrement{
     margin-top: 20px;
@@ -173,33 +136,26 @@ nav li:hover .sousmenu {
     width: 89%;
     margin: auto;
     border-radius: 10px;
-    border: 2px solid #0040ff9c;
-    /* padding: 10px; */
+    border: 6px solid #0040ff9c;
+    padding: 10px;
 }
 .titre{
-    height: 36px;
-    display: flex;
-    justify-content: space-around;
-    /* justify-content: center; */
-    align-items: center;
-    background-color: #5781ff;
+    background-color: #0140ff;
     padding: 10px;
     color: #ffffff;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
     font-family: sans-serif;
-    margin: 0px;
-    border-radius: 8px 8px 0px 0px;
+    margin: 20px;
 }
 .champ_jour,#image_ajouter,#image_ajouter1,.champ_saisi_date,.champ_modifier {
     width: 30%;
     height: 60px;
     margin: 5px;
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: bold;
-    margin: 10px;
 }
 .file{
     display: none;
@@ -212,7 +168,7 @@ nav li:hover .sousmenu {
     font-size: 17px;
     font-family: sans-serif;
     font-weight: bold;
-    /* box-shadow: -1px 1px 5px 1px; */
+    box-shadow: -1px 1px 5px 1px;
     
 }
 .champ_saisi_heure{
@@ -222,16 +178,16 @@ nav li:hover .sousmenu {
     font-size: 17px;
     font-family: sans-serif;
     font-weight: bold;
-    /* box-shadow: -1px 1px 5px 1px; */
+    box-shadow: -1px 1px 5px 1px;
 
 }
 input[type="date"] {
     /* position: absolute; */
     background: #0015ff80 url(../image/calendier-removebg-preview.png);
-    background-size: 52px;
+    background-size: 62px;
     background-repeat: no-repeat;
     background-position: 99%;
-    font-size: 38px;
+    font-size: 48px;
     color: white;
     border: navajowhite;
 }
@@ -244,11 +200,18 @@ input[type="time"] {
     background-size: 44px;
     background-repeat: no-repeat;
     background-position: 99%;
-    font-size: 25px;
+    font-size: 31px;
     border: navajowhite;
 }
 input[type="time"]::-webkit-calendar-picker-indicator{
     opacity: 0;
+}
+
+.formulaire_saire {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 .gestion_bouton{
     display: flex;
@@ -288,45 +251,32 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 }
 
 .plus,.ajouter {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     font-size: 60px;
     font-weight: bold;
     background-color: #004eff;
     color: #ffff;
-    transition: 1s;
-}
-.plus:hover{
-    background: #90ff90;
 }
 
-.paroisse{
-    text-align: center;
-    color: #1100ff;
-    font-family: sans-serif;
-    font-weight: bold;
-    border-bottom: 3px solid;
-}
+
 
 .affiche_programme_semaine {
-    width: 90%;
     display: flex;
     flex-direction: column;
     justify-items: center;
+    width: 92%;
     background: white;
-    border: solid 1px rgb(0, 8, 255);
+    border: solid 5px rgb(0, 8, 255);
     border-radius: 10px;
     margin: 14px auto;
 }
-.affiche_programmess_jour_image{
-    width: 100%;
-}
 
-/* .afficher_programme{
+.afficher_programme{
     display: flex;
     flex-direction: row;
-} */
+}
 .affiche_programme{
     display: flex;
     flex-direction: row;
@@ -342,7 +292,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     display: flex;
     flex-direction: row;
      width: 100%;
-    justify-content: center;
 }
 .nom_theme:hover{
     height: 100%;
@@ -358,11 +307,11 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     padding: 8px;
     border: 2px solid rgb(177, 188, 166);
     margin: 3px;
-    /* background: antiquewhite; */
+    background: antiquewhite;
     color: blueviolet;
 }
 .edith,.delete{
-    /* display: none; */
+    display: none;
 }
 
 .nom_theme {
@@ -392,8 +341,8 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     padding: 8px;
     border: 2px solid rgb(177, 188, 166);
     margin: 3px;
-    /* background: #7f00ff78; */
-    color: blueviolet;
+    background: #7f00ff78;
+    color: white;
 }
 .modifier_supprimer{
     width: 151px;
@@ -425,21 +374,15 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 }
 
 .modifier{
-    background: rgb(61 165 114);
+    background: rgb(36, 54, 255);
     color: beige;
     cursor: pointer;
-    padding: 10px;
-    margin: 3px;
-    border-radius: 4px;
     
 }
 .supprimer {
     background: rgb(255, 0, 0);
     color: azure;
     cursor: pointer;
-    padding: 10px;
-    margin: 3px;
-    border-radius: 4px;
    
 }
 
@@ -447,7 +390,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: center;
 }
 .crocher_heure{
     width: 150px
@@ -609,69 +551,39 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 /* .jour_date_image { */
 
 
-    @media (max-width:1324px) {
-        .contenu {
-            margin-top: 166px;
-            margin-left: 0px;
-        }
-        nav {
-            width: 100%;
-            position: absolute;
-            height:10%;
-            background: transparent;
-        }
-        .open  nav {
-            width: 100%;
-            position: absolute;
-            height: 100%;
-            background: transparent;
-        }
+    @media (max-width:900px) {
         .change_pour_mobile {
-            background: #fffffff5;
             display: flex;
-            /* justify-content: space-between; */
             flex-direction: column;
-
+            background: #fffffff5;
+            position: absolute;
             width: 100%;
             height: 100%;
             left: 1px;
             transform: translateX(-100%);
             transition: 1s;
         }
-        .display_pour_mobile {
-
-            justify-content: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px;
-        }
         .change_pour_mobile li {
             border-bottom: 1px solid #008000;
         }
         .menu-activite {
             border-top: 1px solid #0026ff;
-            /* background-color: rgb(240, 240, 246) */
+            background-color: rgb(240, 240, 246)
         }
         .menu-activite:hover {
             background-color: rgb(237 228 157 / 60%);
             /* border-top: 5px solid #0026ff;
             background-color: rgb(240, 240, 246) */
         }
-        
         nav>ul>li>a {
             padding: 10px 17px;
             color: #5c2f0b;
-        }
-        nav>ul>li {
-            background: white;
-
         }
         .open .change_pour_mobile{
             transform: translateX(0);
             font-size: 30px;
         }
-        /* .display_pour_mobile{
+        .display_pour_mobile{
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -684,24 +596,27 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         }
         .crocher {
             margin-top: 12%;
-        } */
+        }
         
         .sousmenu li a {
             font-size: 30px;
             width: 100%;
-        }  
-      
+            width: 721px;
+        }
+        /* .sousmenu li a {
+            width: 721px;
+        } */
     
-         .logo {
+        .logo {
             width: 18%;
             border-radius: 50%;
             z-index: 1;
             height:90%;
             margin: 10px 1px;
-        } 
-        /* .paroisse {
+        }
+        .paroisse {
             margin-top: 90px;
-        } */
+        }
         .open .label-image{
             z-index: -1;
         }
@@ -733,7 +648,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         }
         .champ_jour{
             width: 91%;
-            font-size: 20px;
+            font-size: 14px;
         }
         .champ_saisi_date{
             width: 44%;
@@ -746,12 +661,12 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         }
         .label-image {
             color: red;
-            top: 577px;
+            top: 477px;
             right: 71;
             font-size: 33px;
         }
         .champ_saisi {
-            width: 44%;
+            width: 50%;
         }
         .champ_saisi_heure {
             width: 16%;
@@ -762,14 +677,11 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             height: 53px;
             font-size: 55px;
         }
-        .titre {
-            font-size: 14px;
-        }
 
-        /* .description_activite {
+        .description_activite {
             width: 48%;
-        } */
-        /* .modifier_supprimer {
+        }
+        .modifier_supprimer {
             width: 10%;
         }
         .tableau_nom_them {
@@ -777,16 +689,12 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         }
         .jour_date_image {
             width: 10%;
-        }  */
-        /* .jour_date {
+        }
+        .jour_date {
             width: 8%;
         }
         .crocher_heure {
             width: 12%;
-        }  */
-        .ajouter_activite_btn {
-            margin-left: 37px;
-            width: 50%;
         }
 
         .confiermer, .alerte_supprimer_champ {
@@ -809,16 +717,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 
     }
 
-    @media (max-width:600px) {
-        .contenu {
-            margin-top: 64px;
-            margin-left: 0px;
-        }
-        .ajouter_activite_btn {
-            margin-left: 21px;
-            width: 55%;
-            font-size: 16px;
-        }
+    @media (max-width:500px) {
         .titre {
             font-size: 14px;
         }
@@ -850,9 +749,8 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             width: 91%;
         }
         .label-image {
-            top: 475px;
+            top: 430px;
             color: #eb56ec;
-            font-size: 25px;
         }
         .champ_saisi {
             width: 87%;
@@ -886,7 +784,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             font-weight: bold;
         }
         .description_activite {
-            width: 75%;
+            width: 55%;
         }
         .tableau_nom_them {
             width: 82%;
@@ -934,13 +832,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 }
 
 @media (max-width:400px) {
-    .contenu {
-        margin-top: 94px;
-        margin-left: 0px;
-    }
-    .ajouter_activite_btn {
-        font-size: 13px;
-    }
     .paroisse {
         margin-top: 20px;
         font-size: 16px;
@@ -952,14 +843,14 @@ input[type="time"]::-webkit-calendar-picker-indicator{
         font-size: 10px;
     }
     .champ_jour {
-        font-size: 11px;
+        font-size: 13px;
     }
     input[type="date"] {
         background-size: 40px;
         font-size: 30px;
     }
     .label-image {
-        top: 474px;
+        top: 383px;
         font-size: 21px;
     }
     .champ_saisi {

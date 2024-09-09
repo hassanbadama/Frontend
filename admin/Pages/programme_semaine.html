@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin programme de la semaine </title>
-    <link rel="stylesheet" href="../css/activites.css">
+    <title>programme_semaine</title>
+    <link rel="stylesheet" href="../css/activites_femmes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
+
 <body>
-
-    <header class="entete_navigation">
-        <div class="logos">
-            <img class="logo" src="../image/logo.jpg" alt="" srcset="">
-            <!-- <div>
-                <span class="texte_entre_logos1">ÉGLISE FRATERNELLE LUTTERIENNE DU CAMEROUN </span> <br>
-                <span class="texte_entre_logos2">RÉGION ECCLESIASTIQUE DE YAOUNDE </span> <br>
-                <span class="texte_entre_logos3">CONSISTOIRE DE YAOUNDE II </span> <br>
-                <span class="texte_entre_logos4">PAROISSE AUTONOME DE MELEN</span> <br>
-            </div> -->
-            
-            <nav class="Leslien_de_Navigation">
-                <ul class="Leslien_de_Navigation">
-                  <li class="menu" data-value = "AJOUTER PROGRAMME DE LE SEMAINE"> AJOUTER PROGRAMME DE LA SEMAINE </li>
-                  <li class="menu" data-value = "AJOUTER ACTIVITES DES HOMMES"> AJOUTER ACTIVITES DES HOMMES</li>
-                  <li class="menu" data-value = "AJOUTER ACTIVITES DES JEUNES">AJOUTER ACTIVITES DES JEUNES</li>
-                  <li class="menu" data-value = "AJOUTER ACTIVITES DES FEMMES"> AJOUTER ACTIVITES DES FEMMES</li>
-                  <li class="menu" data-value = "AJOUTER ACTIVITES DES FEMMES"> AJOUTER ACTIVITES DE LA CHORALE</li>
-                  <li class="menu" data-value = "AJOUTER LA GALERIE"> AJOUTER LA GALERIE</li>
-                  <li class="menu" data-value = "AJOUTER LE PROJET">AJOUTER LE PROJET</li>
-                </ul>
-              </nav>
-        </div>
+<div class="flex">
+    <header class="head">
+        <nav class="nav">
+            <div class="display_pour_mobile">
+                <img class="logo" src="../image/logo.jpg" alt="">
+                <div class="toggle">
+                    <i class="fa-solid fa-bars ouvrir"></i>
+                    <i class="ferme fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <ul class="change_pour_mobile">
+                <li class="menu-activite"><a href="../Pages/programme_semaine.html">PROGRAMME DE LA SEMAINE</a></li>
+                <li class="menu-activite"><a href="../Pages/responsables_eglise.html">LES RESPONSABLES DE L'EGLISE</a></li>
+                <li class="menu-activite"><a href="../Pages/projets.html">PROJET</a></li>
+                <li class="menu-activite"><a href="#">GALERIE</a></li>
+                <li class="menu-activite"><a href="../Pages/activite_communaute.html">ACTIVITES DES COMMUNAUTES</a></li>
+                <li class="menu-activite"><a href="../Pages/responsables_communaute.html">RESPONSABLES DES COMMUNAUTES</a></li>
+                <li class="menu-deroulant"><a href="#">ACTIVITES DE L'EGLISE</a>
+                    <ul class="sousmenu">
+                        <li><a href="../Pages/activites_hommes.html">ACTIVITES DES HOMMES</a></li>
+                        <li><a href="../Pages/activites_femmes.html">ACTIVITES DES FEMMES</a></li>
+                        <li><a href="../Pages/activites_jeunes.html">ACTIVITES DES JEUNES</a></li>
+                        <li><a href="../Pages/activites_chorale.html">ACTIVITES DES CHORALE</a></li>
+                    </ul>
+                </li>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <h1 class="paroisse">PAROISSE AUTONOME DE MELEN</h1>
-
+   <div class="contenu">
+    <h1 class="paroisse"> PAROISSE AUTONOME DE MELEN</h1>
+    <p class="ajouter_activite_btn">AJOUTER ACTIVITE</p>
     <section class="formulaire_saire_enregistrement">
-        <p class="titre">FORMULAIRE POUR SAISIR PROGRAMME DE LA SEMAINE</p>
+        <p class="titre">FORMULAIRE POUR SAISIR LE PROGRAMME DE LA SEMAINE </p>
+        <hr>
         <form action="" class="formulaire_saire formulaire_saire1">
             <select name="jour" id="" class="champ_jour">
-                <option value="">SELECTIONNEZ LE JOUR DE L'ACTIVITE</option>
+                <option value="" class="selection">SELECTIONNEZ LE JOUR DE L'ACTIVITE</option>
                 <option value="LUNDI">LUNDI</option>
                 <option value="MARDI">MARDI</option>
                 <option value="MERCREDI">MERCREDI</option>
@@ -49,14 +62,16 @@
             </select>
             <input type="date" class="champ_saisi_date champ_saisi_date" name="nom_1" id="" placeholder="heure">
             <label for="input-file" class="label-image">Ajouter photo</label>
-            <img src="../admin/image/images.png" alt="" id="image_ajouter"> 
+            <img src="../image/images.png" alt="" id="image_ajouter">
             <input type="file" name="file" class="file" accept="image/jpeg, image/png ,image/jpg" id="input-file">
-            <textarea class="champ_saisi champ_saisi_nom0" name="nom" id="" cols="30" rows="10" placeholder="SAISISSEZ LE NOM DE L'ACTIVITE ICI"></textarea>
-            <textarea class="champ_saisi champ_saisi_theme0" name="theme" id="" cols="30" rows="10" placeholder="SAISISSEZ LE THEME DE L'ACTIVITE ICI"></textarea>
-            <input type="time" class=" champ_saisi_heure champ_saisi_heure0" name="nom_1" id="" placeholder="heure" cacher="0">
+            <textarea class="champ_saisi champ_saisi_nom0" name="nom" id="" cols="30" rows="10"
+                placeholder="SAISISSEZ La DESCRIPTION DE PROGRAMME DE SEMAINE ICI"></textarea>
+            <input type="time" class=" champ_saisi_heure champ_saisi_heure0" name="nom_1" id="" placeholder="heure"
+                cacher="0">
             <button class="moins0 supprimer_champ moins" cacher="0">-</button>
 
         </form>
+        <hr>
         <div class="gestion_bouton">
             <button class="enregistrer">ENREGISTRER</button>
             <button class="clique_ajouter_formulaire_saisir plus">+</button>
@@ -66,7 +81,7 @@
 
     <section class="modifier_activite">
         <div class="modifier_formulaire_saire_enregistrement">
-            <p class="titre">FORMULAIRE POUR SAISIR LA MODIFICATION</p>
+            <p class="titre">FORMULAIRE POUR LA MODIFICATION LE PROGRAMME DE LA SEMAINE</p>
             <form action="" class=" formulaire_saire formulaire_saire2 formulaire_saire1">
                 <select name="jour" id="" class="champ_modifier">
                     <option value="">SELECTIONNEZ LE JOUR DE L'ACTIVITE</option>
@@ -79,117 +94,68 @@
                     <option value="DIMANCHE">DIMANCHE</option>
                 </select>
                 <input type="date" class="champ_saisi_date champ_modifier_date" name="nom_1" id="" placeholder="heure">
-                <input type="file" name="file" class="file fil" id="">
-                <textarea class="champ_saisi champ_modifier_nom0" name="nom" id="" cols="30" rows="10" placeholder="SAISISSEZ LE NOM DE L'ACTIVITE ICI"></textarea>
-                <textarea class="champ_saisi champ_modifier_theme0" name="theme" id="" cols="30" rows="10" placeholder="SAISISSEZ LE THEME DE L'ACTIVITE ICI"></textarea>
-                <input type="time" class=" champ_saisi_heure champ_modifier_heure0" name="nom_1" id="" placeholder="heure">
+                <label for="input-file1" class="label-image">Ajouter photo</label>
+                <img src="../image/images.png" alt="" id="image_ajouter1">
+                <input type="file" name="file" class="file fil" accept="image/jpeg, image/png ,image/jpg"
+                    id="input-file1">
+                <textarea class="champ_saisi champ_saisi_nom0 champ_modifier_nom0" name="nom" id="" cols="30" rows="10"
+                    placeholder="SAISISSEZ LE NOM DE L'ACTIVITE ICI"></textarea>
+                <input type="time" class=" champ_saisi_heure champ_saisi_heure0 champ_modifier_heure0" name="nom_1"
+                    id="" placeholder="heure">
                 <button class="moins0 supprimer_champ moins" cacher="0">-</button>
-                
-    
+
+
             </form>
             <div class="gestion_bouton">
                 <button class=" valider_modification">MODIFIER</button>
+                <!-- <button class=" annuller_modification">ANNULLER LA MODIFICATION</button> -->
                 <button class="ajouter">+</button>
             </div>
         </div>
 
     </section>
 
-
-    <section class="teste">
-<!-- 
-     <div class="affiche_programme_semaine fermer_affecher">
-        <p class="titre">ACTIVITE DE LA SEMAINE</p>
-        <div class="disposition_afficher">
-            <div class="affiche_programmess_jour_image">
-               <div class="jour_image">
-                <span class="">JOURS</span>
-                <span class="">IMAGES</span>
-               </div>
-            </div>
-            <table class="affiche_programmess">
-                <tr class="afficher_programme">
-                    <td class="nom_activite">NOMS DE ACTIVITES</td> 
-                    <td class="nom_activite">THEMES</td>
-                    <td>DATES
-                    </td>
-                    <td>HEURES</td>
-                    <td class="modifier">MODIFIER</td>
-                    <td class="supprimer">SUPPRIMER</td>
-                </tr>
-            </table>
-        </div>
-    </div> -->
-
-<!--      
-    <div class="affiche_programme_semaine fermer_affecher">
-        <p class="titre">ACTIVITE DE LA SEMAINE</p>
-        <div class="disposition_afficher">
-            <div class="affiche_programmess_jour_image">
-               <div class="jour_image">
-                <span class="jour_date_heure">JOURS</span>
-                <span class="jour_date_heure">DATES</span>
-                <span class="jour_date_heure">HEURES</span>
-                <span class="nom_theme">NOMS DES ACTIVITE</span>
-                <span class="nom_theme">THEMES DES ACTIVITE</span>
-                <span class="jour_date_heure">IMAGES</span>
-                <span class="jour_date_heure modifier">MODIFIER</span>
-                <span class="jour_date_heure supprimer">SUPPRIMER</span>
-               </div>
-               <div class="tableau">
-                    <div class="jour_date_modifier_supprimer_image">
-                        <div class="jour_date_image"> <span class="jour_date_heure"> DIMANCHE </span></div>
-                    </div>
-                    <div class="jour_date_image"> <span class="jour_date_heure">12/09/2024</span> </div>
-                    <div class="crocher_heure">
-                        <span class="jour_date_heure">12h30mn</span>
-                        
-                    </div>
-                    <div class="tableau_nom_them jour_image crocher_nom_activite">
-                        <span class="nom_theme">NOMS DES ACTIVITE</span>
-
-                    </div>
-                    <div class="tableau_nom_them jour_image crocher_theme_actvivte">
-                        <span class="nom_theme">NOMS DES ACTIVITE</span>
-
-                    </div>
-                    <div class="jour_date_image crocher_image"><img src="../asset/image/a2.jpeg" alt=""></div>
-                    <div class="jour_date_image modifier crocher_modifier"> <span class="jour_date_heure"> MODIFIER </span></div>
-                    <div class="jour_date_image supprimer crocher_supprimer"> <span class="jour_date_heure"> SUPPRIMER </span></div>
-                  </div>
-                    
-               </div>
-            </div>
-        </div>
-    </div> -->
+    <section class="crocher_affichage">
 
     </section>
+   </div>
+</div>
 
-    <div  class="confiermer_supprimer">
+    <div class="confiermer_supprimer">
         <div class="confiermer">
             <span> VOULEZ VOUS </span>
-            <span> SUPPRIMER CET ACTIVITE ?</span>
+            <span> SUPPRIMER LE PROGRAMME ?</span>
             <p> <span class="non">Non </span> <span class="oui">Oui</span> </p>
         </div>
     </div>
 
-    <div  class="confiermer_modifier">
+    <div class="confiermer_modifier">
         <div class="confiermer">
             <span> VOULEZ VOUS </span>
-            <span> MODIFIER L'ACTIVITE ?</span>
+            <span> MODIFIER PROGRAMME ?</span>
             <p> <span class="non_modifier">Non </span> <span class="oui_modifier">Oui</span> </p>
         </div>
     </div>
-    <div  class="champ_vide">
-        <div class="alerte_champ_vide">
+
+    <div class="champ_vide">
+        <!-- <div class="alerte_champ_vide">
             <span> VEILLEZ REMPLIRE BIEN LES CHAMPS S'IL VOUS PLAIT  </span>
-            <span> CAR LES INFORMATIONS NE SONT PAS ENREGISTRER CLIQUER SUR OK  </span>
+            <span> CAR VOUS AVEZ  PAS REMPLI LE CHAMPS HEURE OU DESCRIPTION </span>
             <span>POUR COMPLETER  </span>
             <p> <span class="recommence">OK</span> </p>
-        </div>
+        </div> -->
     </div>
-  
-  
+
+    <!-- <div class="suppression_champ">
+        <div class="alerte_supprimer_champ">
+            <span>voulez vous vraiment les champs</span>
+            <span> </span>
+            <p> <span class="non_supprimer_champ">Non </span> <span class="oui_supprimer_champ">Oui</span> </p>
+         </div>
+    </div> -->
+
+
 </body>
-<script src="../js/activites copie.js"></script>
+<script src="../js/programme_semaines.js"></script>
+
 </html>
