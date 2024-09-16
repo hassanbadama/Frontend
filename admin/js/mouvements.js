@@ -1,3 +1,52 @@
+const token = localStorage.getItem("code")
+if (!token) {
+  document.location.href = `connecter.html`;
+}
+
+// Récupérer les paramètres
+const url = new URL(window.location.href);
+const mouvement = url.searchParams.get('mouvement');
+console.log("mouvement");
+console.log(mouvement);
+//ajouter dynamiquement sur le nom de mouvement sur la liste deroulante
+const creer =  `
+<option value="${mouvement.toUpperCase()}">${mouvement.toUpperCase()}</option>
+`
+const crocher_communaute = document.querySelector(".champ_mouvement")
+crocher_communaute.insertAdjacentHTML("beforeend", creer)
+
+
+Afficher_liste_des_mouvements()
+function Afficher_liste_des_mouvements() {
+    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Afficher_communaute");
+            console.log(data);
+            for (let i of data) {
+                const mouvement_modif_crocher =  `
+                <option value="${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</option>
+                `
+                const mouvement_modif = document.querySelector(".mouvement_modifier")
+                mouvement_modif.insertAdjacentHTML("beforeend", mouvement_modif_crocher)
+
+                const crocher_pour_naviguer =  `
+                <li><a href="../Pages/mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue = document.querySelector(".crocher_pour_naviguer")
+             crocher_pour_navigue.insertAdjacentHTML("beforeend", crocher_pour_naviguer)
+             const crocher_pour_navigueresponsable =  `
+                <li><a href="../Pages/responsables_mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue_responsable = document.querySelector(".crocher_pour_naviguer_responsable")
+             crocher_pour_navigue_responsable.insertAdjacentHTML("beforeend", crocher_pour_navigueresponsable)
+
+                
+            }
+        });
+
+}
+
 //clique pour ajour que le formulaire ajouter activite ouvre
 document.querySelector(".ajouter_activite_btn").addEventListener("click", function (event) {
   document.querySelector(".formulaire_saire_enregistrement").style.display = "block"
@@ -31,127 +80,140 @@ function construction_de_formulaire(i, k) {
 }
 
 
+function gestion_de_duplication_de_jour_pour_un_mouvement(tableau_jours){
+ 
+    document.querySelector(".enregistrer").addEventListener("click", function (event) {
+      let tableau = []
+      let indice = 0
 
-//clik pour enregistre une actvité
-document.querySelector(".enregistrer").addEventListener("click", function (event) {
-  let tableau = []
-  let indice = 0
-  //validation pour les champs
-  let validation = true;
-  for (let k = 0; k <= compteur_nombre_champs; k++) {
-    //tester si nom de classe existe
-    if (document.querySelector(".champ_saisi_nom" + k)) {
-      //Recuperer valeurs
-      const nom = document.querySelector(".champ_saisi_nom" + k)
-      const heure = document.querySelector(".champ_saisi_heure" + k)
-      //valeurs recuperer
-      let nom_activite = nom.value
-      let heure_activite = heure.value
-      //tester si le champ est non vider
-      if (heure_activite && nom_activite) {
-        //tableau pour stocker nom_activite,theme_activite,heure_activite pour une date et une journee
-        tableau[indice] = [nom_activite, heure_activite]
-        indice = indice + 1
-      }
-      else {
-        validation = false
-      }
-
-    }
-
-  }
-  const date = document.querySelector(".champ_saisi_date")
-  //converture date
-  const [annee, mois, jour] = date.value.split('-');
-  const date_activite = `${jour}-${mois}-${annee}`;
-  const jour_activite = document.querySelector(".champ_jour")
-  const image = document.querySelector(".file")
-  //tester il ya pas de champs vide
-  if (validation) {
-    if (image.files[0] && jour_activite.value) {
-      // appel fonction pour enregistrer une activite
-      Enregistrer_activite(tableau, jour_activite.value, date_activite, image.files[0])
-      console.log("oui");
-    }
-    else {
-      //alerte lorsqu'on n'a pas ajouter image pour une activité
-      Gestion_des_erreur_champs_vides( "AJOUTER PHOTO", "", "")
-      document.querySelector(".champ_vide").style.display = "block"
-      document.querySelector(".recommence").addEventListener("click", function (event) {
-        document.querySelector(".champ_vide").style.display = "none"
-        document.querySelector(".alerte_champ_vide").remove()
-
-      })
-    }
-  }
-  else {
-    //alerte
-    Gestion_des_erreur_champs_vides( "DESCRIPTION", "OU", "HEURE")
-    document.querySelector(".champ_vide").style.display = "block"
-    document.querySelector(".recommence").addEventListener("click", function (event) {
-      document.querySelector(".champ_vide").style.display = "none"
-      document.querySelector(".alerte_champ_vide").remove()
-      validation = true
-    })
-  }
-})
-
-
-//fonction pour ajouter une activité
-function Enregistrer_activite(tableau, jour_activite, date_activite, image) {
-
-  let Formdata = new FormData()
-  Formdata.append("jour_activite", jour_activite)
-  Formdata.append("date_activite", date_activite)
-  Formdata.append("tableau_activite", JSON.stringify(tableau))
-  Formdata.append("image", image)
-  console.log(tableau);
-  console.log(jour_activite);
-  fetch("http://localhost:3000/api/auth/activites_hommes", {
-    method: 'POST',
-    headers: { "Authorization": "Bearer" },
-    body: Formdata
-  }).then((res) => res.json())
-    .then((data) => {
-      if (data.erreur) {
-        console.log("*****erreur******");
-        Gestion_des_erreur_duplication_de_meme_jour(jour_activite)
+      const jour_activite = document.querySelector(".champ_jour")
+      const mouvement = document.querySelector(".champ_mouvement")
+      const image = document.querySelector(".file")
+       //condition pour la gestion de dublication de jour pour l'activité
+      if (tableau_jours.includes(jour_activite.value)) {
+        console.log("oui Ca exite le jour");
+        Gestion_des_erreur_duplication_de_meme_jour(jour_activite.value)
         document.querySelector(".champ_vide").style.display = "block"
         document.querySelector(".recommence").addEventListener("click", function (event) {
           document.querySelector(".champ_vide").style.display = "none"
           document.querySelector(".alerte_champ_vide").remove()
         })
       }
-      else {
-        document.location.href = `activites_hommes.html`;
-        console.log("*****BONNNNNNN******");
+      else{
+        //validation pour les champs
+        let validation = true;
+      for (let k = 0; k <= compteur_nombre_champs; k++) {
+        //tester si nom de classe existe
+        if (document.querySelector(".champ_saisi_nom" + k)) {
+          //Recuperer valeurs
+          const nom = document.querySelector(".champ_saisi_nom" + k)
+          const heure = document.querySelector(".champ_saisi_heure" + k)
+          //valeurs recuperer
+          let nom_activite = nom.value
+          let heure_activite = heure.value
+          //tester si le champ est non vider
+          if (heure_activite && nom_activite) {
+            //tableau pour stocker nom_activite,theme_activite,heure_activite pour une date et une journee
+            tableau[indice] = [nom_activite, heure_activite]
+            indice = indice + 1
+          }
+          else {
+            validation = false
+          }
+    
+        }
+    
       }
+      const date = document.querySelector(".champ_saisi_date")
+      //converture date
+      const [annee, mois, jour] = date.value.split('-');
+      const date_activite = `${jour}-${mois}-${annee}`;
+
+      //tester il ya pas de champs vide
+      if (validation) {
+        if (image.files[0] && mouvement.value) {
+          // appel fonction pour enregistrer une activite
+          Enregistrer_activite(tableau, jour_activite.value, date_activite, image.files[0], mouvement.value)
+          console.log("oui");
+        }
+        else {
+          //alerte lorsqu'on n'a pas ajouter image pour une activité
+          Gestion_des_erreur_champs_vides( "AJOUTER PHOTO", "ou", "Mouvement")
+          document.querySelector(".champ_vide").style.display = "block"
+          document.querySelector(".recommence").addEventListener("click", function (event) {
+            document.querySelector(".champ_vide").style.display = "none"
+            document.querySelector(".alerte_champ_vide").remove()
+    
+          })
+        }
+      }
+      else {
+        //alerte
+        Gestion_des_erreur_champs_vides( "DESCRIPTION", "OU", "HEURE")
+        document.querySelector(".champ_vide").style.display = "block"
+        document.querySelector(".recommence").addEventListener("click", function (event) {
+          document.querySelector(".champ_vide").style.display = "none"
+          document.querySelector(".alerte_champ_vide").remove()
+          validation = true
+        })
+      }
+      }
+    })
+}
+
+//${token}
+//fonction pour ajouter une activité
+function Enregistrer_activite(tableau, jour_activite, date_activite, image,mouvement) {
+
+  let Formdata = new FormData()
+  Formdata.append("jour_activite", jour_activite)
+  Formdata.append("mouvement", mouvement)
+  Formdata.append("date_activite", date_activite)
+  Formdata.append("tableau_activite", JSON.stringify(tableau))
+  Formdata.append("image", image)
+  console.log(tableau);
+  console.log(jour_activite);
+  fetch("http://localhost:3000/api/auth/activites_mouvements", {
+    method: 'POST',
+    headers: { "Authorization": `Bearer ${token}` },
+    body: Formdata
+  }).then((res) => res.json())
+    .then((data) => {
+      document.location.href = `mouvement.html?mouvement=${mouvement}`;
     })
 
 }
 
 // //appel de la fonction pour afficher activites
-Afficher_activites_femmes()
+Afficher_activites()
 
 //Afficher  activite
-function Afficher_activites_femmes() {
+function Afficher_activites() {
+
   //pour donner le noms des classes differents pour les affichage
   let idheure = 0
   let idnom = 0
+ 
 
   let tableau_jour = ["LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"]
-  fetch("http://localhost:3000/api/auth/Afficher_activites_hommes")
+  console.log(tableau_jour);
+  
+  fetch("http://localhost:3000/api/auth/Afficher_mouvements")
     .then((res) => res.json())
     .then((data) => {
       console.log("Afficher_programme_semaine");
       console.log(data);
+      //tableau pour gerer les duplications de jour de activite de meme mouvement
+      let tableau_compte_jour_afficher = []
+      let id_compteur_jour = 0 
       for (let k = 0; k <= tableau_jour.length - 1; k++) {
         for (let i of data) {
           //condition pour generer les activité par ordre du jour (du genre lundi a dimanche)
-          if (tableau_jour[k] == i.jour_activite) {
-
+          if (tableau_jour[k] == i.jour_activite && i.mouvement == mouvement) {
+            tableau_compte_jour_afficher[id_compteur_jour] = tableau_jour[k] ;
             idheure = "idheure" + idheure + 1
             idnom = "idnom" + idnom + 1
+            id_compteur_jour = id_compteur_jour + 1
             //appel
             construction_affiche_activite(i.jour_activite, i.file, i.tableau_activite, i.date_activite, i._id, idheure, idnom)
 
@@ -160,18 +222,22 @@ function Afficher_activites_femmes() {
         }
 
       }
+      //appel de fonction
+      gestion_de_duplication_de_jour_pour_un_mouvement(tableau_compte_jour_afficher)
 
-      suppression_activites_hommes()
-      modifier_activites_hommes()
+      suppression_activites()
+      modifier_activites()
       supprimer_champ()
     });
+   
+    
 
 }
 
 //fonction pour construire affichage des activites
 function construction_affiche_activite(jour, image, tab, date, id_activite, idheure, idnom) {
   const construire = `<div class="affiche_programme_semaine fermer_affecher">
-  <p class="titre"> <span> ACTIVITES DES HOMMES POUR LA JOURNEE DU ${jour} ${date=="undefined-undefined-"?"":date}  </span> <span class ="edith modifier" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></span>  <span class ="delete supprimer" data-value="${id_activite}"> <i class="fa-solid fa-trash" data-value="${id_activite}"></i> </span>     </p>
+  <p class="titre"> <span> ACTIVITES DES ${mouvement} POUR LA JOURNEE DU ${jour} ${date=="undefined-undefined-"?"":date}  </span> <span class ="edith modifier" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></span>  <span class ="delete supprimer" data-value="${id_activite}"> <i class="fa-solid fa-trash" data-value="${id_activite}"></i> </span>     </p>
   <div class="disposition_afficher">
       <div class="affiche_programmess_jour_image">
          <div class="jour_image">
@@ -224,7 +290,7 @@ function construire_description_heure(tableau_activite, idheure, idnom) {
 
 
 //supprimer activite
-function suppression_activites_hommes() {
+function suppression_activites() {
   const supprimer = document.querySelectorAll(".supprimer")
   supprimer.forEach((el) => {
     console.log("element");
@@ -233,9 +299,9 @@ function suppression_activites_hommes() {
       document.querySelector(".confiermer_supprimer").style.display = "block"
       //clique sur oui pour valider la suppression de activité
       document.querySelector(".oui").addEventListener("click", function (event) {
-        fetch(`http://localhost:3000/api/auth/suppression_activites_hommes/${id}`, {
+        fetch(`http://localhost:3000/api/auth/suppression_mouvements/${id}`, {
           method: "DELETE",
-          headers: { "Authorization": "Bearer" }
+          headers:  { "Authorization": `Bearer ${token}` }
         })
           .then((res) => res.json())
           .then(data => {
@@ -243,7 +309,7 @@ function suppression_activites_hommes() {
             console.log("oui supprimer avec succee")
             console.log(data)
             //redirection
-           document.location.href = `activites_hommes.html`;
+            document.location.href = `mouvement.html?mouvement=${mouvement}`;
           })
       })
 
@@ -258,7 +324,7 @@ function suppression_activites_hommes() {
 }
 
 //modifier activite
-function modifier_activites_hommes() {
+function modifier_activites() {
   //id pour le valeur de modification
   let id
   const modifier = document.querySelectorAll(".modifier")
@@ -276,7 +342,7 @@ function modifier_activites_hommes() {
         document.querySelector(".formulaire_saire_enregistrement").style.display = "none"
         //fermer affichage des activite
         document.querySelector(".crocher_affichage").style.display = "none"
-        fetch(`http://localhost:3000/api/auth/Recherche_pour_supprimer_activites_hommes/${id}`)
+        fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_mouvements/${id}`)
           .then((res) => res.json())
           .then((data) => {
             compteur_nombre_champs_modifier = data.tableau_activite.length
@@ -304,6 +370,8 @@ function modifier_activites_hommes() {
               const date_activite = `${annee}-${mois}-${jour}`;
               date.value = date_activite
               const jour_activite = document.querySelector(".champ_modifier")
+              const mouvement = document.querySelector(".mouvement_modifier")
+              mouvement.value = data.mouvement
               jour_activite.value = data.jour_activite
 
 
@@ -313,6 +381,7 @@ function modifier_activites_hommes() {
               const heure = document.querySelector(".champ_modifier_heure0")
               const date = document.querySelector(".champ_modifier_date")
               const jour_activite = document.querySelector(".champ_modifier")
+              const mouvement = document.querySelector(".mouvement_modifier")
 
               //conversion de date
               const [jour, mois, annee] = data.date_activite.split('-');
@@ -321,6 +390,7 @@ function modifier_activites_hommes() {
               nom.value = data.tableau_activite[0][0]
               heure.value = data.tableau_activite[0][1]
               jour_activite.value = data.jour_activite
+              mouvement.value = data.mouvement
             }
           });
 
@@ -357,6 +427,7 @@ function modifier_activites_hommes() {
     }
     const date = document.querySelector(".champ_modifier_date")
     const jour_activite = document.querySelector(".champ_modifier")
+    const mouvements = document.querySelector(".mouvement_modifier")
 
     const [annee, mois, jour] = date.value.split('-');
     const date_activite = `${jour}-${mois}-${annee}`;
@@ -364,21 +435,22 @@ function modifier_activites_hommes() {
     const image = document.querySelector(".fil")
     let Formdata = new FormData()
     Formdata.append("jour_activite", jour_activite.value)
+    Formdata.append("mouvement", mouvements.value)
     Formdata.append("date_activite", date_activite)
     Formdata.append("tableau_activite", JSON.stringify(tableau_modifier))
     Formdata.append("image", image.files[0])
     //si les champs de modifications des activites sont bien rempli
     if (validation_modification) {
-      fetch(`http://localhost:3000/api/auth/modifier_activites_hommes/${id}`, {
+      fetch(`http://localhost:3000/api/auth/modifier_mouvements/${id}`, {
         method: 'put',
         headers: {
-          "Authorization": "Bearer",
+          "Authorization": `Bearer ${token}` 
         },
         body: Formdata
       }).then((res) => res.json())
         .then((data) => {
           console.log("modifier avec succee");
-          document.location.href = `activites_hommes.html`;
+          document.location.href = `mouvement.html?mouvement=${mouvement}`;
         })
     }
     else {
@@ -427,7 +499,7 @@ function Gestion_des_erreur_duplication_de_meme_jour(jour) {
   let champs_vide = `
   <div class="alerte_champ_vide">
      <span>LA JOURNE DE ${jour} A DEJA ENREGISTRER AVEC DES ACTIVITES</span>
-     <span>SI VOUS VOULEZ AJOUTER DES ACTIVITE A CETTE DE ${jour} VEILLEZ CLIQUER</span>
+     <span>SI VOUS VOULEZ AJOUTER DES ACTIVITES A CETTE JOURNE DE ${jour} VEILLEZ CLIQUER</span>
      <span>SUR LA MODIFICATION DE CE JOUR</span>
      <span>CLIQUEZ SUR OK  POUR FERMER CETTE PAGE</span>
      <p> <span class="recommence">OK</span> </p>
@@ -458,5 +530,7 @@ let body = document.querySelector("body");
 toggle.addEventListener("click", function (event){
   body.classList.toggle("open")
 })
+
+
 
 

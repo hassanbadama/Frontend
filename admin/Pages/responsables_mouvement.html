@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>activite communaute</title>
+	<title> responsable MOUVEMENTS</title>
 
 	<link rel="stylesheet" href="../css/responsables.css">
 
@@ -32,22 +32,22 @@
 					</div>
 				</div>
 				<ul class="change_pour_mobile">
-					<li class="menu-activite"><a href="../Pages/programme_semaine.html">PROGRAMME DE LA SEMAINE</a></li>
-					<li class="menu-activite"><a href="../Pages/responsables_eglise.html">LES RESPONSABLES DE L'EGLISE</a></li>
-					<li class="menu-activite"><a href="../Pages/projets.html">PROJET</a></li>
-					<li class="menu-activite"><a href="#">GALERIE</a></li>
-					<li class="menu-activite"><a href="../Pages/creer_compte.html">ADMINISTRATEURS</a></li>
-					<li class="menu-activite"><a href="../Pages/activite_communaute.html">ACTIVITES DES COMMUNAUTES</a></li>
-					<li class="menu-activite"><a href="../Pages/responsables_communaute.html">RESPONSABLES DES COMMUNAUTES</a></li>
-					<li class="menu-deroulant"><a href="#">ACTIVITES DE L'EGLISE</a>
-						<ul class="sousmenu">
-							<li><a href="../Pages/activites_hommes.html">ACTIVITES DES HOMMES</a></li>
-							<li><a href="../Pages/activites_femmes.html">ACTIVITES DES FEMMES</a></li>
-							<li><a href="../Pages/activites_jeunes.html">ACTIVITES DES JEUNES</a></li>
-							<li><a href="../Pages/activites_chorale.html">ACTIVITES DES CHORALE</a></li>
+					<li class="menu-deroulant"><a href="#">MOUVEMENTS DE</a>
+						<ul class="sousmenu crocher_pour_naviguer">
+							
 						</ul>
 					</li>
+					<li class="menu-deroulant"><a href="#">RESPONSABLES DES MOUVEMENTS DE</a>
+						<ul class="sousmenu crocher_pour_naviguer_responsable">
+							
+						</ul>
 					</li>
+					<li class="menu-activite"><a href="../Pages/programme_semaine.html">PROGRAMME DE LA SEMAINE</a></li>
+					<li class="menu-activite"><a href="../Pages/responsables_eglise.html">LES RESPONSABLES DE L'EGLISE</a></li>
+					<li class="menu-activite"><a href="../Pages/creer_compte.html">ADMINISTRATEURS</a></li>
+					<li class="menu-activite"><a href="../Pages/liste_communaute.html">LES MOUVEMENTS ENREGISTRER</a></li>
+					<li class="menu-activite"><a href="../Pages/projets.html">PROJET</a></li>
+					<li class="menu-activite"><a href="../Pages/galerie.html">GALERIE</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -55,11 +55,11 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Les activités communautés </b></h2>
+						<h2>Les responsables des communautés </b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
-								class="material-icons">&#xE147;</i> <span>Ajouter activités communautés</span></a>
+								class="material-icons">&#xE147;</i> <span>Ajouter responsable</span></a>
 					</div>
 				</div>
 			</div>
@@ -68,16 +68,17 @@
 					<thead>
 						<tr>
 							<th scope="col">Actions</th>
-							<th scope="col">Dates</th>
-							<th scope="col">Heures</th>
-							<th scope="col">jours</th>
-							<th scope="col">descriptions</th>
+							<th scope="col">Noms</th>
+							<th scope="col">Prenoms</th>
+							<th scope="col">Fonctions</th>
 							<th scope="col">communautés</th>
+							<th scope="col">Contacts</th>
+							<th scope="col">Quartiers</th>
 							<th scope="col">Photos</th>
 
 						</tr>
 					</thead>
-					<tbody class="crocher_activite_communaute">
+					<tbody class="crocher_affichage_admin">
 
 
 					</tbody>
@@ -89,46 +90,41 @@
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Ajouter activité de communauté</h4>
+								<h4 class="modal-title">Ajouter responsable</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
 								<span class="champ_vid"></span>
 								<div class="form-group">
-									<label>description:</label>
-									<input type="text" class="form-control description" placeholder="" required="required">
+									<label>Nom:</label>
+									<input type="text" class="form-control nom" placeholder="" required="required">
 								</div>
 								<div class="form-group">
-									<label>Date:</label>
-									<input type="date" class="form-control date" placeholder="" required="required">
+									<label>Prenom:</label>
+									<input type="text" class="form-control prenom" placeholder="" required="required">
 								</div>
 								<div class="form-group">
-									<label>Heure:</label>
-									<input type="time" class="form-control heure" placeholder="" required="required">
-								</div>
-								<div class="form-group">
-									<label>Jour:</label>
-									<select name="communautes" id="" class="form-control jour">
-										<option value="">selectionnez le jours</option>
-										<option value="LUNDI">LUNDI</option>
-										<option value="MARDI">MARDI</option>
-										<option value="MERCREDI">MERCREDI</option>
-										<option value="JEUDI">JEUDI</option>
-										<option value="VENDREDI">VENDREDI</option>
-										<option value="SAMEDI">SAMEDI</option>
-										<option value="DIMANCHE">DIMANCHE</option>
-									</select>
+									<label>Fonction:</label>
+									<input type="text" class="form-control fonction" placeholder="" required="required">
 								</div>
 								<div class="form-group">
 									<label>communautés:</label>
 									<select name="communautes" id="" class="form-control communaute crocher_communaute">
-										<option value="">selectionnez communautés</option>
+										
 									</select>
+								</div>
+								<div class="form-group">
+									<label>Contact:</label>
+									<input type="text" class="form-control contact" placeholder="" required="required">
+								</div>
+								<div class="form-group">
+									<label>Quartier:</label>
+									<input type="text" class="form-control quartier" placeholder="" required="required">
 								</div>
 
 								<div class="form-group">
-									<label>Image</label>
+									<label>Votre photo</label>
 									<input type="file" class="form-control file" placeholder="" required="required">
 								</div>
 								<span class="champ_vide"></span>
@@ -149,47 +145,49 @@
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Modifier activité de communauté</h4>
+								<h4 class="modal-title">Modifier responsable de l'eglise</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
+
 							<div class="modal-body">
 								<span class="champ_vid"></span>
 								<div class="form-group">
-									<label>description:</label>
-									<input type="text" class="form-control description_edit" placeholder="" required="required">
+									<label>Nom:</label>
+									<input type="text" class="form-control nom_edit" placeholder="Nom"
+										required="required">
 								</div>
 								<div class="form-group">
-									<label>Date:</label>
-									<input type="date" class="form-control date_edit" placeholder="" required="required">
+									<label>Prenom:</label>
+									<input type="text" class="form-control prenom_edit" placeholder="Prenom"
+										required="required">
 								</div>
 								<div class="form-group">
-									<label>Heure:</label>
-									<input type="time" class="form-control heure_edit" placeholder="" required="required">
-								</div>
-								<div class="form-group">
-									<label>Jour:</label>
-									<select name="communautes" id="" class="form-control jour_edit">
-										<option value="">selectionnez le jours</option>
-										<option value="LUNDI">LUNDI</option>
-										<option value="MARDI">MARDI</option>
-										<option value="MERCREDI">MERCREDI</option>
-										<option value="JEUDI">JEUDI</option>
-										<option value="VENDREDI">VENDREDI</option>
-										<option value="SAMEDI">SAMEDI</option>
-										<option value="DIMANCHE">DIMANCHE</option>
-									</select>
+									<label>Fonction:</label>
+									<input type="text" class="form-control fonction_edit" placeholder="Fonction"
+										required="required">
 								</div>
 								<div class="form-group">
 									<label>communautés:</label>
-									<select name="communautes" id="" class="form-control communaute_edit crocher_communaute_modifier">
+									<select name="communautes" id=""class="form-control communaute_edit crocher_communaute_modifier">
 										<option value="">selectionnez communautés</option>
 									</select>
 								</div>
+								<div class="form-group">
+									<label>Contact:</label>
+									<input type="text" class="form-control contact_edit" placeholder="Contact"
+										required="required">
+								</div>
+								<div class="form-group">
+									<label>Quartier:</label>
+									<input type="text" class="form-control quartier_edit" placeholder="Quartier"
+										required="required">
+								</div>
 
 								<div class="form-group">
-									<label>Image</label>
-									<input type="file" class="form-control file_edit" placeholder="" required="required">
+									<label>Votre photo</label>
+									<input type="file" class="form-control file_edit" placeholder="Password"
+										required="required">
 								</div>
 								<span class="champ_vide"></span>
 							</div>
@@ -208,12 +206,12 @@
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Supprimer cet activité </h4>
+								<h4 class="modal-title">Supprimer un responsable</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
-								<p>Voulez vous supprimer cet activité ?</p>
+								<p>Voulez vous supprimer ce responsable ?</p>
 								<p class="text-warning"><small>Cliquer sur annuler pour annuler ou sur supprimer pour
 										supprimer</small></p>
 							</div>
@@ -234,7 +232,7 @@
 	<script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
 	<script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
 	<script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
-	<script src="../js/activite_communaute.js"></script>
+	<script src="../js/responsable_mouvements.js"></script>
 </body>
 
 </html>

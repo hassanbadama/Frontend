@@ -1,7 +1,35 @@
-// const token = localStorage.getItem("code")
-// if (!token) {
-//   document.location.href = `connecter.html`;
-// }
+const token = localStorage.getItem("code")
+if (!token) {
+  document.location.href = `connecter.html`;
+}
+
+Afficher_liste_des_mouvements()
+function Afficher_liste_des_mouvements() {
+    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Afficher_communaute");
+            console.log(data);
+            for (let i of data) {
+                const crocher_pour_naviguer =  `
+                <li><a href="../Pages/mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue = document.querySelector(".crocher_pour_naviguer")
+             crocher_pour_navigue.insertAdjacentHTML("beforeend", crocher_pour_naviguer)
+
+             const crocher_pour_navigueresponsable =  `
+                <li><a href="../Pages/responsables_mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue_responsable = document.querySelector(".crocher_pour_naviguer_responsable")
+             crocher_pour_navigue_responsable.insertAdjacentHTML("beforeend", crocher_pour_navigueresponsable)
+                
+            }
+        });
+
+}
+
+
+
 //clique pour ajour que le formulaire ajouter activite ouvre
 document.querySelector(".ajouter_activite_btn").addEventListener("click", function (event) {
   document.querySelector(".formulaire_saire_enregistrement").style.display = "block"
@@ -113,7 +141,7 @@ function Enregistrer_programme(tableau, jour_activite, date_activite, image) {
   console.log(jour_activite);
   fetch("http://localhost:3000/api/auth/programmes_semaine", {
     method: 'POST',
-    headers: { "Authorization": `Bearer` },
+    headers: { "Authorization": `Bearer ${token}` },
     body: Formdata
   }).then((res) => res.json())
     .then((data) => {
@@ -238,7 +266,7 @@ function suppression_programme_semaine() {
       document.querySelector(".oui").addEventListener("click", function (event) {
         fetch(`http://localhost:3000/api/auth/suppression_programmes_semaine/${id}`, {
           method: "DELETE",
-          headers: { "Authorization": "Bearer" }
+          headers: { "Authorization": `Bearer ${token}` }
         })
           .then((res) => res.json())
           .then(data => {
@@ -375,7 +403,7 @@ function modifier_programme_semaine() {
       fetch(`http://localhost:3000/api/auth/modifier_programmes_semaine/${id}`, {
         method: 'put',
         headers: {
-          "Authorization": "Bearer",
+          "Authorization": `Bearer ${token}`,
         },
         body: Formdata
       }).then((res) => res.json())
@@ -430,7 +458,7 @@ function Gestion_des_erreur_duplication_de_meme_jour(jour) {
   let champs_vide = `
   <div class="alerte_champ_vide">
      <span>LA JOURNE DE ${jour} A DEJA ENREGISTRER AVEC DES ACTIVITES</span>
-     <span>SI VOUS VOULEZ AJOUTER DES ACTIVITE A CETTE DE ${jour} VEILLEZ CLIQUER</span>
+     <span>SI VOUS VOULEZ AJOUTER DES ACTIVITES A CETTE JOURNE DE ${jour} VEILLEZ CLIQUER</span>
      <span>SUR LA MODIFICATION DE CE JOUR</span>
      <span>CLIQUEZ SUR OK  POUR FERMER CETTE PAGE</span>
      <p> <span class="recommence">OK</span> </p>

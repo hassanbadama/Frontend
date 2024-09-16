@@ -1,3 +1,41 @@
+const token = localStorage.getItem("code")
+if (!token) {
+  document.location.href = `connecter.html`;
+}
+// Récupérer les paramètres
+const url = new URL(window.location.href);
+const mouvement = url.searchParams.get('mouvement');
+console.log("mouvement");
+console.log(mouvement);
+//ajouter dynamiquement sur le nom de mouvement sur la liste deroulante
+
+Afficher_liste_des_mouvements()
+function Afficher_liste_des_mouvements() {
+    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Afficher_communaute");
+            console.log(data);
+            for (let i of data) {
+                const crocher_pour_naviguer =  `
+                <li><a href="../Pages/mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue = document.querySelector(".crocher_pour_naviguer")
+             crocher_pour_navigue.insertAdjacentHTML("beforeend", crocher_pour_naviguer)
+
+             const crocher_pour_navigueresponsable =  `
+                <li><a href="../Pages/responsables_mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue_responsable = document.querySelector(".crocher_pour_naviguer_responsable")
+             crocher_pour_navigue_responsable.insertAdjacentHTML("beforeend", crocher_pour_navigueresponsable)
+                
+            }
+        });
+
+}
+
+
+
 document.querySelector(".ajouter").addEventListener("click", function (event) {
     event.preventDefault()
     console.log("cliquer ajouter");
@@ -20,7 +58,7 @@ function projet(description, fichier) {
     Formdata.append("image", fichier.files[0])
     fetch("http://localhost:3000/api/auth/ajouter_projet", {
         method: 'POST',
-        headers: { "Authorization": "Bearer" },
+        headers: { "Authorization": `Bearer ${token}` },
         body: Formdata
     }).then((res) => res.json())
         .then(data => {
@@ -88,7 +126,7 @@ function supprimer_projet() {
 
                 fetch(`http://localhost:3000/api/auth/suppression_projet/${id}`, {
                     method: "DELETE",
-                    headers: { "Authorization": "Bearer" }
+                    headers: { "Authorization": `Bearer ${token}` }
                 })
                     .then((res) => res.json())
                     .then(data => {
@@ -144,7 +182,7 @@ function Modifier_projet() {
         fetch(`http://localhost:3000/api/auth/modifier_projet/${id}`, {
             method: 'put',
             headers: {
-                "Authorization": "Bearer",
+                "Authorization": `Bearer ${token}`,
             },
             body: Formdata
         }).then((res) => res.json())

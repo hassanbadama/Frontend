@@ -176,6 +176,10 @@ a{
 
 
 /*** Button Start ***/
+.back-to-top{
+    position: fixed;
+    bottom: 30px;
+}
 .btn {
     font-weight: 600;
     transition: .5s;
@@ -269,7 +273,7 @@ a{
 
 /*** le responsable ***/
 .display-4{
-    margin-top: -63px;
+    margin-top: 0px;
 }
 .team .team-item {
     position: relative;
@@ -434,7 +438,9 @@ a{
 .heure{
     color: red;
 }
-.titre_texte{
+
+.titre_texte {
+    background: #ffacfc26;
     text-align: center;
     color: blue;
 }
@@ -527,14 +533,18 @@ a{
 
 
   /*** Project Start ***/
+  .image_galerie_grand{
+    height: 440px;
+    margin-bottom: 30px;
+  }
   .image_projet{
     width: 65px;
     height: 15px;
   }
   .image_projet_grand{
     height: 440px;
-
   }
+  
   .project .project-carousel.owl-carousel {
       height: 100%;
   }
@@ -649,7 +659,7 @@ a{
 
 /* footer */
 
-.social-icons{
+/* .social-icons{
     display: flex;
     justify-content: center;
   }
@@ -680,8 +690,47 @@ a{
   }
   .copyright{
     text-align: center;
-  }
+  } */
 
+
+  
+/*** Footer Start ***/
+.footer {
+    margin-top: 60px;
+    background: var(--bs-dark);
+}
+.footer .footer-item a {
+    line-height: 35px;
+    color: var(--bs-body);
+    transition: 0.5s;
+}
+
+.footer .footer-item p {
+    line-height: 35px;
+}
+
+.footer .footer-item a:hover {
+    letter-spacing: 1px;
+    color: var(--bs-primary);
+}
+
+.footer .footer-item-post a {
+    transition: 0.5s;
+}
+
+.footer .footer-item-post a:hover {
+    color: var(--bs-primary) !important;
+}
+
+.footer .footer-item-post .footer-btn a {
+    transition: 0.5s;
+}
+
+.footer .footer-item-post .footer-btn a:hover {
+    color: var(--bs-dark);
+}
+
+/*** Footer End ***/
 
 
 

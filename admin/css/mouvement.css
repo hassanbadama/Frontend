@@ -21,10 +21,6 @@ body {
     display: none;
 }
 .head {
-    /* padding: 1px 19px; */
-    /* display: flex;
-    justify-content: space-between; */
-    /* background: #2525ff; */
     font-size: 14px;
     font-family: sans-serif;
     font-weight: bold;
@@ -119,14 +115,7 @@ nav li:hover .sousmenu {
 	font-weight: bold;
 }
 
-.label-image{
-    position: absolute;
-    right: 104px;
-    font-size: 23px;
-    font-family: sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-}
+
 .contenu{
     margin-left: 260px;
     position: static;
@@ -192,8 +181,8 @@ nav li:hover .sousmenu {
     margin: 0px;
     border-radius: 8px 8px 0px 0px;
 }
-.champ_jour,#image_ajouter,#image_ajouter1,.champ_saisi_date,.champ_modifier {
-    width: 30%;
+.champ_jour,.champ_modifier,.champ_mouvement,.mouvement_modifier {
+    width: 46%;
     height: 60px;
     margin: 5px;
     font-family: sans-serif;
@@ -201,8 +190,32 @@ nav li:hover .sousmenu {
     font-weight: bold;
     margin: 10px;
 }
+#image_ajouter,#image_ajouter1,.champ_saisi_date{
+    width: 45%;
+    height: 60px;
+    margin: 5px 25px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+.champ{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96%;
+}
 .file{
     display: none;
+}
+.label-image{
+    position: absolute;
+    right: 104px;
+ 
+    font-size: 23px;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
 }
 .champ_saisi {
     padding: 6px;
@@ -323,10 +336,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     width: 100%;
 }
 
-/* .afficher_programme{
-    display: flex;
-    flex-direction: row;
-} */
 .affiche_programme{
     display: flex;
     flex-direction: row;
@@ -361,9 +370,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     /* background: antiquewhite; */
     color: blueviolet;
 }
-.edith,.delete{
-    /* display: none; */
-}
+
 
 .nom_theme {
     /* width: 91%; */
@@ -475,17 +482,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     width: 100%;
     height: 50%;
 }
-/* .hum,.gestion{
-    display: flex;
-    background-color: aquamarine;
-} */
-/* .jour_date_modifier_supprimer_image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 3px;
-    border: 2px solid rgb(177, 188, 166);
-} */
+
 
 .modifier_activite{
     top: 0;
@@ -546,21 +543,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     
 	display: none;
 }
-/* .suppression_champ{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background: rgba(0,0,0,0.3);
-    height: 100%;
-    width: 100%;
-    
-	display: none;
-} */
+
 .champ_vide{
     display: flex;
     justify-content: center;
@@ -639,24 +622,18 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             transition: 1s;
         }
         .display_pour_mobile {
-
             justify-content: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 10px;
         }
-        .change_pour_mobile li {
-            border-bottom: 1px solid #008000;
-        }
+     
         .menu-activite {
             border-top: 1px solid #0026ff;
-            /* background-color: rgb(240, 240, 246) */
         }
         .menu-activite:hover {
             background-color: rgb(237 228 157 / 60%);
-            /* border-top: 5px solid #0026ff;
-            background-color: rgb(240, 240, 246) */
         }
         
         nav>ul>li>a {
@@ -671,20 +648,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             transform: translateX(0);
             font-size: 30px;
         }
-        /* .display_pour_mobile{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .head{
-            display: flex;
-            flex-direction: column;
-            color: black;
-            background: rgb(255, 255, 255);
-        }
-        .crocher {
-            margin-top: 12%;
-        } */
         
         .sousmenu li a {
             font-size: 30px;
@@ -699,9 +662,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             height:90%;
             margin: 10px 1px;
         } 
-        /* .paroisse {
-            margin-top: 90px;
-        } */
         .open .label-image{
             z-index: -1;
         }
@@ -735,21 +695,15 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             width: 91%;
             font-size: 20px;
         }
-        .champ_saisi_date{
-            width: 44%;
-            margin: 10px;
-            font-size: 30px;
+     
+        input[type="date"] {
+            font-size: 25px;
         }
         #image_ajouter{
             margin: 10px;
-            width: 40%;
+            /* width: 40%; */
         }
-        .label-image {
-            color: red;
-            top: 577px;
-            right: 71;
-            font-size: 33px;
-        }
+    
         .champ_saisi {
             width: 44%;
         }
@@ -766,24 +720,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             font-size: 14px;
         }
 
-        /* .description_activite {
-            width: 48%;
-        } */
-        /* .modifier_supprimer {
-            width: 10%;
-        }
-        .tableau_nom_them {
-            width: 51%;
-        }
-        .jour_date_image {
-            width: 10%;
-        }  */
-        /* .jour_date {
-            width: 8%;
-        }
-        .crocher_heure {
-            width: 12%;
-        }  */
         .ajouter_activite_btn {
             margin-left: 37px;
             width: 50%;
@@ -800,7 +736,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             width: 46%;
             margin-top: 50%;
         }
-        .champ_jour, #image_ajouter, #image_ajouter1, .champ_saisi_date, .champ_modifier {
+        .champ_jour,.champ_modifier,.champ_mouvement ,.mouvement_modifier{
             width: 91%;
         }
         nav>ul>li:hover a {
@@ -842,18 +778,16 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             font-family: sans-serif;
             font-weight: bold;
         }
-        .champ_saisi_date {
-            width: 91%;
-        }
-        #image_ajouter {
-            margin: 10px;
-            width: 91%;
-        }
+       
         .label-image {
-            top: 475px;
-            color: #eb56ec;
-            font-size: 25px;
+            /* top: 475px; */
+            right: 50px;
+            font-size: 16px;
         }
+        input[type="date"] {
+            font-size: 18px;
+        }
+     
         .champ_saisi {
             width: 87%;
         }
@@ -914,7 +848,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
             font-size: 25px;
             margin: 2px;
         }
-        .champ_modifier,#image_ajouter1 {
+        .champ_modifier {
             width: 92%;
         }
        .valider_modification{
@@ -956,11 +890,13 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     }
     input[type="date"] {
         background-size: 40px;
-        font-size: 30px;
+        font-size: 14px;
     }
     .label-image {
-        top: 474px;
-        font-size: 21px;
+        font-size: 10px;
+    }
+    #image_ajouter, #image_ajouter1, .champ_saisi_date {
+        margin: 0px;
     }
     .champ_saisi {
         font-size: 12px;
@@ -1001,6 +937,9 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     }
     nav>ul>li:hover a {
         padding: 10px 15px 10px 15px;
+    }
+    input[type="date"] {
+        font-size: 11px;
     }
 
     .confiermer, .alerte_supprimer_champ {

@@ -1,3 +1,34 @@
+const token = localStorage.getItem("code")
+if (!token) {
+  document.location.href = `connecter.html`;
+}
+
+Afficher_liste_des_mouvements()
+function Afficher_liste_des_mouvements() {
+    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Afficher_communaute");
+            console.log(data);
+            for (let i of data) {
+                const crocher_pour_naviguer =  `
+                <li><a href="../Pages/mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue = document.querySelector(".crocher_pour_naviguer")
+             crocher_pour_navigue.insertAdjacentHTML("beforeend", crocher_pour_naviguer)
+
+             const crocher_pour_navigueresponsable =  `
+                <li><a href="../Pages/responsables_mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue_responsable = document.querySelector(".crocher_pour_naviguer_responsable")
+             crocher_pour_navigue_responsable.insertAdjacentHTML("beforeend", crocher_pour_navigueresponsable)
+                
+            }
+        });
+
+}
+
+
 document.querySelector(".creer").addEventListener("click", function (event) {
     event.preventDefault()
     console.log("cliquer connecter");
@@ -22,7 +53,7 @@ function enregistrement_admin(user,mdp,fichier) {
 
     fetch("http://localhost:3000/api/auth/ajouter_admin", {
         method: 'POST',
-        headers: { "Authorization": "Bearer" },
+        headers: { "Authorization": `Bearer ${token}`  },
         body: Formdata
     }).then((res) => res.json())
         .then(data => {
@@ -49,6 +80,9 @@ function afficher_admin() {
             for (let i of data) {
                 construction_affiche_admin(i.nom_user, i.mdp_user, i.file, i._id)
             }
+            new DataTable('#admin', {
+                responsive: true
+            });
         });
 }
 
@@ -57,13 +91,13 @@ function afficher_admin() {
 function construction_affiche_admin(usr, mdp, imag, id_activite) {
     const creer = `
     <tr>
-    <td>${usr}</td>
-    <td> <img class="admin" src="${imag}" alt="" srcset=""> </td>
-    <td>
-        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-value="${id_activite}"><i class="fa-solid fa-trash" data-value="${id_activite}"></i></a>
-    </td>
-</tr>
-`
+        <td>
+            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-value="${id_activite}"><i class="fa-solid fa-trash" data-value="${id_activite}"></i></a>
+        </td>
+        <td>${usr}</td>
+        <td> <img class="admin" src="${imag}" alt="" srcset=""> </td>
+    </tr>
+ `
     const creaction_affichage_activite = document.querySelector(".crocher_affichage_admin")
     creaction_affichage_activite.insertAdjacentHTML("beforeend", creer)
     supprimer_admin()
@@ -84,7 +118,7 @@ function supprimer_admin() {
                 
                 fetch(`http://localhost:3000/api/auth/suppression_admin/${id}`, {
                     method: "DELETE",
-                    headers: { "Authorization": "Bearer" }
+                    headers: { "Authorization": `Bearer ${token}` }
                 })
                     .then((res) => res.json())
                     .then(data => {
@@ -99,3 +133,10 @@ function supprimer_admin() {
     })
 
 }
+
+//les responsive
+const toggle = document.querySelector(".toggle");
+let body = document.querySelector("body");
+toggle.addEventListener("click", function (event){
+  body.classList.toggle("open")
+})

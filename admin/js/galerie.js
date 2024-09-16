@@ -3,6 +3,12 @@ if (!token) {
   document.location.href = `connecter.html`;
 }
 
+// Récupérer les paramètres
+const url = new URL(window.location.href);
+const mouvement = url.searchParams.get('mouvement');
+console.log("mouvement");
+console.log(mouvement);
+//ajouter dynamiquement sur le nom de mouvement sur la liste deroulante
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
@@ -29,63 +35,48 @@ function Afficher_liste_des_mouvements() {
 
 }
 
+
+
 document.querySelector(".ajouter").addEventListener("click", function (event) {
     event.preventDefault()
-    console.log("cliquer ajouter");
-    const nom = document.querySelector(".nom")
-    const prenom = document.querySelector(".prenom")
-    const quartier = document.querySelector(".quartier")
-    const contact = document.querySelector(".contact")
-    const fonction = document.querySelector(".fonction")
+    console.log("cliquer galerie");
     const fichier = document.querySelector(".file")
-    if (nom.value && prenom.value && fichier.files[0] && quartier.value && contact.value && fonction.value) {
-        responsables_eglise(nom, prenom, fichier, contact, quartier, fonction)
-    }
-    else {
-        document.querySelector(".champ_vid").textContent = " vous avez oublié certains champs qui ne sont pas encore rempli"
-        document.querySelector(".champ_vide").textContent = "remplissez tous les champs s'il vous plait"
-
-    }
-
+        galerie(fichier)
 })
-//enregistrer responsables
-function responsables_eglise(nom, prenom, fichier, contact, quartier, fonction) {
-    let Formdata = new FormData()
-    Formdata.append("nom", nom.value)
-    Formdata.append("prenom", prenom.value)
-    Formdata.append("contact", contact.value)
-    Formdata.append("fonction", fonction.value)
-    Formdata.append("quartier", quartier.value)
-    Formdata.append("image", fichier.files[0])
 
-    fetch("http://localhost:3000/api/auth/ajouter_responsable_eglise", {
+function galerie(fichier) {
+    let Formdata = new FormData()
+    Formdata.append("image", fichier.files[0])
+    fetch("http://localhost:3000/api/auth/ajouter_galerie", {
         method: 'POST',
-        headers: { "Authorization": `Bearer ${token}`},
+        headers: { "Authorization": `Bearer ${token}` },
         body: Formdata
     }).then((res) => res.json())
         .then(data => {
-            console.log("ajour responsables_eglise");
+            console.log("ajouter  galerie");
             console.log(data);
-            document.location.href = `responsables_eglise.html`;
+            document.location.href = `galerie.html`;
 
         })
-
 }
 
+
+
+
 // //appel de la fonction afficher les responsables
-Afficher_responsable_eglise()
+Afficher_galerie()
 //afficher activite
-function Afficher_responsable_eglise() {
-    fetch("http://localhost:3000/api/auth/Afficher_responsable_eglise")
+function Afficher_galerie() {
+    fetch("http://localhost:3000/api/auth/Afficher_galerie")
         .then((res) => res.json())
         .then((data) => {
-            console.log("Afficher_responsable_eglise");
+            console.log("Afficher_galerie");
             console.log(data);
             for (let i of data) {
-                construction_affiche_admin(i.nom, i.prenom, i.file, i.fonction, i.contact, i.quartier, i._id)
+                construction_affiche_projet(i.file, i._id)
             }
-            Modifier_responsable()
-            supprimer_responsable_eglise()
+            Modifier_galerie()
+            supprimer_galerie()
             new DataTable('#example', {
                 responsive: true
             });
@@ -95,26 +86,22 @@ function Afficher_responsable_eglise() {
 
 
 
-function construction_affiche_admin(nom, prenom, imag, fonction, contact, quartier, id_activite) {
+function construction_affiche_projet(imag, id_activite) {
     const creer = `
     <tr>
-     <td>
-        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-value="${id_activite}"><i class="fa-solid fa-trash" data-value="${id_activite}"></i></a>
-        <a href="#editEmployeeModal" class="edit" data-toggle="modal" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></a> 
-    </td>
-    <td>${nom}</td>
-    <td>${prenom}</td>
-    <td>${fonction}</td>
-    <td>${contact}</td>
-    <td>${quartier}</td>
-    <td> <img class="admin" src="${imag}" alt="" srcset=""> </td>
-</tr>
+        <td>
+            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-value="${id_activite}"><i class="fa-solid fa-trash" data-value="${id_activite}"></i></a>
+            <a href="#editEmployeeModal" class="edit" data-toggle="modal" data-value="${id_activite}"> <i class="fa-solid fa-pen-to-square" data-value="${id_activite}"></i></a> 
+        </td>
+        
+        <td> <img class="admin" src="${imag}" alt="" srcset=""> </td>
+   </tr>
 `
     const creaction_affichage_activite = document.querySelector(".crocher_affichage_admin")
     creaction_affichage_activite.insertAdjacentHTML("beforeend", creer)
 }
 
-function supprimer_responsable_eglise() {
+function supprimer_galerie() {
     const supprimer = document.querySelectorAll(".delete")
     supprimer.forEach((el) => {
         console.log("element");
@@ -127,16 +114,16 @@ function supprimer_responsable_eglise() {
                 console.log("oui cliquer sur suppppp");
                 event.preventDefault()
 
-                fetch(`http://localhost:3000/api/auth/suppression_responsable_eglise/${id}`, {
+                fetch(`http://localhost:3000/api/auth/suppression_galerie/${id}`, {
                     method: "DELETE",
-                    headers: { "Authorization":`Bearer ${token}`}
+                    headers: { "Authorization": `Bearer ${token}` }
                 })
                     .then((res) => res.json())
                     .then(data => {
                         console.log("oui supprimer avec succee")
                         console.log(data)
                         //redirection
-                        document.location.href = `responsables_eglise.html`;
+                        document.location.href = `galerie.html`;
                     })
             })
 
@@ -146,7 +133,7 @@ function supprimer_responsable_eglise() {
 }
 
 
-function Modifier_responsable() {
+function Modifier_galerie() {
     let id
     const modifier = document.querySelectorAll(".edit")
 
@@ -160,53 +147,36 @@ function Modifier_responsable() {
             console.log("element");
             id = event.target.getAttribute("data-value")
             console.log(id);
-            fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_responsable_eglise/${id}`)
+            fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_galerie/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log("trouver user");
+                    console.log("trouver Afficher_galerie");
                     console.log(data);
-                    const nom = document.querySelector(".nom_edit")
-                    nom.value = data.nom
-                    const prenom = document.querySelector(".prenom_edit")
-                    prenom.value = data.prenom
-                    const fonction = document.querySelector(".fonction_edit")
-                    fonction.value = data.fonction
-                    const contact = document.querySelector(".contact_edit")
-                    contact.value = data.contact
-                    const quartier = document.querySelector(".quartier_edit")
-                    quartier.value = data.quartier
+                   // const description = document.querySelector(".nom_edit")
+                   // description.value = data.description
+
                 });
         })
     })
-    //valider la modifier de projet
+    //valider la modifier de galerie
     document.querySelector(".valider_modifier").addEventListener("click", function (event) {
         event.preventDefault()
-        const nom = document.querySelector(".nom_edit")
-        const prenom = document.querySelector(".prenom_edit")
-        const fonction = document.querySelector(".fonction_edit")
-        const contact = document.querySelector(".contact_edit")
-        const quartier = document.querySelector(".quartier_edit")
-        const fichier = document.querySelector(".file_edit");
+        const ficher = document.querySelector(".file_edit")
         // console.log("cliquer ouiiii")
         console.log("clocker sur modifier");
         let Formdata = new FormData()
-        Formdata.append("nom", nom.value)
-        Formdata.append("prenom", prenom.value)
-        Formdata.append("contact", contact.value)
-        Formdata.append("fonction", fonction.value)
-        Formdata.append("quartier", quartier.value)
-        Formdata.append("image", fichier.files[0])
+        Formdata.append("image", ficher.files[0])
 
-        fetch(`http://localhost:3000/api/auth/modifier_responsable_eglise/${id}`, {
+        fetch(`http://localhost:3000/api/auth/modifier_galerie/${id}`, {
             method: 'put',
             headers: {
-                "Authorization":`Bearer ${token}`,
+                "Authorization": `Bearer ${token}`,
             },
             body: Formdata
         }).then((res) => res.json())
             .then((data) => {
                 console.log("modifier avec succee");
-                document.location.href = `responsables_eglise.html`;
+                document.location.href = `galerie.html`;
             })
     })
 }
@@ -218,6 +188,3 @@ let body = document.querySelector("body");
 toggle.addEventListener("click", function (event){
   body.classList.toggle("open")
 })
-
-
-

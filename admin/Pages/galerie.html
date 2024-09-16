@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title> liste communautes</title>
+	<title> GALERIE</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css">
@@ -54,11 +54,11 @@
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
-							<h2>Les communautés </b></h2>
+							<h2>LA GALERIE </b></h2>
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
-									class="material-icons">&#xE147;</i> <span>Ajouter communautés</span></a>
+									class="material-icons">&#xE147;</i> <span>Ajouter Galerie</span></a>
 						</div>
 					</div>
 				</div>
@@ -66,8 +66,8 @@
 					<table id="example" class="table table-striped nowrap">
 						<thead>
 							<tr>
-								<th>communautés</th>
 								<th>Actions</th>
+								<th>Images</th>
 							</tr>
 						</thead>
 						<tbody class="crocher_affichage_admin">
@@ -84,15 +84,15 @@
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Ajouter communautés</h4>
+								<h4 class="modal-title">Ajouter Galerie</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
 								<span class="champ_vid"></span>
 								<div class="form-group">
-									<label>Nom communautés:</label>
-									<input type="text" class="form-control nom" placeholder="Nom" required="required">
+									<label>Image:</label>
+									<input type="file" class="form-control file" placeholder="Nom" required="required">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -110,7 +110,7 @@
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Modifier communautés</h4>
+								<h4 class="modal-title">Modifier</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
@@ -118,9 +118,8 @@
 							<div class="modal-body">
 								<span class="champ_vid"></span>
 								<div class="form-group">
-									<label>Nom des communautés:</label>
-									<input type="text" class="form-control nom_edit" placeholder="Nom"
-										required="required">
+									<label>Image:</label>
+									<input type="file" class="form-control file_edit" placeholder="Nom" required="required">
 								</div>
 							</div>
 
@@ -138,12 +137,12 @@
 					<div class="modal-content">
 						<form>
 							<div class="modal-header">
-								<h4 class="modal-title">Supprimer cette communauté</h4>
+								<h4 class="modal-title">Supprimer image</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
-								<p>Voulez vous supprimer cette communauté ?</p>
+								<p>Voulez vous supprimer ?</p>
 								<p class="text-warning"><small>Cliquer sur annuler pour annuler ou sur supprimer pour
 										supprimer</small></p>
 							</div>
@@ -164,7 +163,7 @@
 	<script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
 	<script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
 	<script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
-	<script src="../js/liste_communaute.js"></script>
+	<script src="../js/galerie.js"></script>
 </body>
 
 </html>

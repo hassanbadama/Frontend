@@ -158,7 +158,17 @@ li {
 	width: 65px;
 	height: 20px;
 }
-
+.image_user_connecter{
+	width: 100%;
+	height: 435px;
+	margin: auto;
+}
+.actions {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	font-size: 30px;
+}
 
 /* table tr th:last-child {
 	width: 60px;
@@ -363,8 +373,6 @@ label{
 
 
 @media (max-width:1000px) {
-
-	
 	.nav {
 		width: 100%;
 		position: absolute;

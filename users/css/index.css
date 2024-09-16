@@ -135,13 +135,7 @@ a{
     display: flex;
     justify-content: center;
 }
-/* .texte{
-    position: absolute;
-    bottom: 220px;
-    left: 205px;
-    color: wheat;
-    font-size: xx-large;
-} */
+
 .dot {
 	margin-inline: 5px;
 	width: 13px;
@@ -210,11 +204,6 @@ a{
     width: 99%;
     height: 320px;
     border-radius: 50%;
-}
-
-.footer{
-    height: 250px;
-    background-color: #9ba6ff;
 }
 
 

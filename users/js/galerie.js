@@ -27,47 +27,31 @@ const url = new URL(window.location.href);
 
 // Récupérer les paramètres
 const nomcommunaute = url.searchParams.get('nomcommunaute');
-//ajouter dynamiquement le nom des communautés
-// const communaute = ` <span>Communauté ${nomcommunaute} </span>`
-// const creaction_affichage_activite = document.querySelector(".titre_texte")
-// creaction_affichage_activite.insertAdjacentHTML("beforeend", communaute)
 
-
-
-
-Afficher_projet()
+Afficher_galerie()
 //afficher activite
-function Afficher_projet() {
-    fetch("http://localhost:3000/api/auth/Afficher_projet")
+function Afficher_galerie() {
+    fetch("http://localhost:3000/api/auth/Afficher_galerie")
         .then((res) => res.json())
         .then((data) => {
-            console.log("Afficher projet");
+            console.log("Afficher galerie");
             console.log(data);
             for (let i of data) {
-                construction_affiche_projet(i.description, i.file)
+                construction_affiche_projet(i.file)
             }
         });
 
 }
 
-function construction_affiche_projet(descriptionom, imag) {
+function construction_affiche_projet( imag) {
     const creer = `
 
-                        <div class="project-item h-100 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="project-item h-100 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="project-img">
-                            <img src=" ${imag} " class="img-fluid w-100 rounded image_projet_grand" alt="Image">
-                        </div>
-                        <div class="project-content bg-light rounded p-4">
-                            <div class="project-content-inner">
-                                <div class="project-icon mb-3"><i class="fas fa-chart-line fa-4x text-primary"></i></div>
-                                <a href="#" class="h4"> ${descriptionom}</a>
-                                <div class="pt-4">
-                                    <img src="${imag}" class="img-fluid w-100 rounded image_projet" alt="Image">
-                                </div>
-                            </div>
+                            <img src=" ${imag} " class="img-fluid w-100 rounded image_galerie_grand" alt="Image">
                         </div>
                     </div>`
-    const creaction_affichage_activite = document.querySelector(".crocher_projet")
+    const creaction_affichage_activite = document.querySelector(".crocher_galerie")
     creaction_affichage_activite.insertAdjacentHTML("beforeend", creer)
 }
 

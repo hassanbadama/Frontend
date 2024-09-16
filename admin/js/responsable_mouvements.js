@@ -1,26 +1,50 @@
+const token = localStorage.getItem("code")
+if (!token) {
+  document.location.href = `connecter.html`;
+}
 
 
-Afficher_liste_communautes_sur_formulaire()
-function Afficher_liste_communautes_sur_formulaire() {
+// Récupérer les paramètres
+const url = new URL(window.location.href);
+const mouvement = url.searchParams.get('mouvement');
+//ajouter dynamiquement sur le nom de mouvement sur la liste deroulante
+const creer =  `
+<option value="${mouvement.toUpperCase()}">${mouvement.toUpperCase()}</option>
+`
+const crocher_communaute = document.querySelector(".crocher_communaute")
+crocher_communaute.insertAdjacentHTML("beforeend", creer)
+
+
+Afficher_liste_des_mouvements()
+function Afficher_liste_des_mouvements() {
     fetch("http://localhost:3000/api/auth/Afficher_communaute")
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
             console.log(data);
             for (let i of data) {
-               const creer =  `
-					<option value="${i.nom_communaute}">${i.nom_communaute}</option>
-                `
-                const crocher_communaute = document.querySelector(".crocher_communaute")
-                crocher_communaute.insertAdjacentHTML("beforeend", creer)
-                const crocher_communaute_modifier = document.querySelector(".crocher_communaute_modifier")
-                crocher_communaute_modifier.insertAdjacentHTML("beforeend", creer)
+                const crocher_pour_naviguer =  `
+                <li><a href="../Pages/mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue = document.querySelector(".crocher_pour_naviguer")
+             crocher_pour_navigue.insertAdjacentHTML("beforeend", crocher_pour_naviguer)
+
+             const crocher_pour_navigueresponsable =  `
+                <li><a href="../Pages/responsables_mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue_responsable = document.querySelector(".crocher_pour_naviguer_responsable")
+             crocher_pour_navigue_responsable.insertAdjacentHTML("beforeend", crocher_pour_navigueresponsable)
+
+             const modifier =  `
+               <option value="${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</option>
+          `
+            const crocher_communaute = document.querySelector(".crocher_communaute_modifier")
+            crocher_communaute.insertAdjacentHTML("beforeend", modifier)
+                
             }
         });
 
 }
-
-
 
 //cliquer pour ajouter
 document.querySelector(".ajouter").addEventListener("click", function (event) {
@@ -56,13 +80,13 @@ function responsables_communaute(nom, prenom, fichier, contact, quartier, foncti
 
     fetch("http://localhost:3000/api/auth/ajouter_responsable_communaute", {
         method: 'POST',
-        headers: { "Authorization": "Bearer" },
+        headers: { "Authorization": `Bearer ${token}`},
         body: Formdata
     }).then((res) => res.json())
         .then(data => {
             console.log("ajour responsables_eglise");
             console.log(data);
-            document.location.href = `responsables_communaute.html`;
+            document.location.href = `responsables_mouvement.html?mouvement=${mouvement}`;
 
         })
 
@@ -81,7 +105,11 @@ function Afficher_responsable_communaute() {
             console.log("Afficher_responsable_eglise");
             console.log(data);
             for (let i of data) {
-                construction_affiche_responsable(i.nom, i.prenom, i.file, i.fonction, i.contact, i.quartier, i._id, i.communaute)
+                if (i.communaute.toUpperCase() == mouvement) {
+                    construction_affiche_responsable(i.nom, i.prenom, i.file, i.fonction, i.contact, i.quartier, i._id, i.communaute)
+
+                }
+
             }
             Modifier_responsable();
             supprimer_responsable_communaute();
@@ -131,14 +159,14 @@ function supprimer_responsable_communaute() {
                 event.preventDefault()
                 fetch(`http://localhost:3000/api/auth/suppression_responsable_communaute/${id}`, {
                     method: "DELETE",
-                    headers: { "Authorization": "Bearer" }
+                    headers: { "Authorization": `Bearer ${token}` }
                 })
                     .then((res) => res.json())
                     .then(data => {
                         console.log("oui supprimer avec succee")
                         console.log(data)
                         //redirection
-                        document.location.href = `responsables_communaute.html`;
+                        document.location.href = `responsables_mouvement.html?mouvement=${mouvement}`;
                     })
             })
 
@@ -207,13 +235,13 @@ function Modifier_responsable() {
         fetch(`http://localhost:3000/api/auth/modifier_responsable_communaute/${id}`, {
             method: 'put',
             headers: {
-                "Authorization": "Bearer",
+                "Authorization": `Bearer ${token}`,
             },
             body: Formdata
         }).then((res) => res.json())
             .then((data) => {
                 console.log("modifier avec succee");
-                document.location.href = `responsables_communaute.html`;
+                document.location.href = `responsables_mouvement.html?mouvement=${mouvement}`;
             })
     })
 }

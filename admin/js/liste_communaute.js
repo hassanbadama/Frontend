@@ -1,3 +1,8 @@
+const token = localStorage.getItem("code")
+if (!token) {
+  document.location.href = `connecter.html`;
+}
+
 document.querySelector(".ajouter").addEventListener("click", function (event) {
     event.preventDefault()
     console.log("cliquer ajouter");
@@ -18,7 +23,7 @@ function liste_communautes(nom) {
     Formdata.append("nom", nom.value)
     fetch("http://localhost:3000/api/auth/ajouter_communaute", {
         method: 'POST',
-        headers: { "Authorization": "Bearer" },
+        headers: { "Authorization": `Bearer ${token}` },
         body: Formdata
     }).then((res) => res.json())
         .then(data => {
@@ -32,18 +37,28 @@ function liste_communautes(nom) {
 
 
 
-
-// //appel de la fonction afficher les responsables
-Afficher_liste_communautes()
-//afficher activite
-function Afficher_liste_communautes() {
+Afficher_liste_des_mouvements()
+function Afficher_liste_des_mouvements() {
     fetch("http://localhost:3000/api/auth/Afficher_communaute")
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
             console.log(data);
             for (let i of data) {
-                construction_affiche_liste_communautes(i.nom_communaute, i._id)
+                const crocher_pour_naviguer =  `
+                <li><a href="../Pages/mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue = document.querySelector(".crocher_pour_naviguer")
+             crocher_pour_navigue.insertAdjacentHTML("beforeend", crocher_pour_naviguer)
+
+             const crocher_pour_navigueresponsable =  `
+                <li><a href="../Pages/responsables_mouvement.html?mouvement=${i.nom_communaute.toUpperCase()}">${i.nom_communaute.toUpperCase()}</a></li>
+             `
+             const crocher_pour_navigue_responsable = document.querySelector(".crocher_pour_naviguer_responsable")
+             crocher_pour_navigue_responsable.insertAdjacentHTML("beforeend", crocher_pour_navigueresponsable)
+
+             construction_affiche_liste_communautes(i.nom_communaute, i._id)
+                
             }
             Modifier_liste_communautes()
             supprimer_liste_communautes()
@@ -53,6 +68,7 @@ function Afficher_liste_communautes() {
         });
 
 }
+
 
 
 
@@ -85,7 +101,7 @@ function supprimer_liste_communautes() {
 
                 fetch(`http://localhost:3000/api/auth/suppression_communaute/${id}`, {
                     method: "DELETE",
-                    headers: { "Authorization": "Bearer" }
+                    headers: { "Authorization": `Bearer ${token}` }
                 })
                     .then((res) => res.json())
                     .then(data => {
@@ -139,7 +155,7 @@ function Modifier_liste_communautes() {
         fetch(`http://localhost:3000/api/auth/modifier_communaute/${id}`, {
             method: 'put',
             headers: {
-                "Authorization": "Bearer",
+                "Authorization": `Bearer ${token}`,
             },
             body: Formdata
         }).then((res) => res.json())

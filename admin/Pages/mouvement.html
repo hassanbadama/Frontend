@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin activites hommes </title>
-    <link rel="stylesheet" href="../css/activites_femmes.css">
+    <title>admin mouvement </title>
+    <link rel="stylesheet" href="../css/mouvement.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,29 +25,31 @@
                 </div>
             </div>
             <ul class="change_pour_mobile">
-                <li class="menu-activite"><a href="../Pages/programme_semaine.html">PROGRAMME DE LA SEMAINE</a></li>
-                <li class="menu-activite"><a href="../Pages/responsables_eglise.html">LES RESPONSABLES DE L'EGLISE</a></li>
-                <li class="menu-activite"><a href="../Pages/projets.html">PROJET</a></li>
-                <li class="menu-activite"><a href="#">GALERIE</a></li>
-                <li class="menu-activite"><a href="../Pages/activite_communaute.html">ACTIVITES DES COMMUNAUTES</a></li>
-                <li class="menu-activite"><a href="../Pages/responsables_communaute.html">RESPONSABLES DES COMMUNAUTES</a></li>
-                <li class="menu-deroulant"><a href="#">ACTIVITES DE L'EGLISE</a>
-                    <ul class="sousmenu">
-                        <li><a href="../Pages/activites_hommes.html">ACTIVITES DES HOMMES</a></li>
-                        <li><a href="../Pages/activites_femmes.html">ACTIVITES DES FEMMES</a></li>
-                        <li><a href="../Pages/activites_jeunes.html">ACTIVITES DES JEUNES</a></li>
-                        <li><a href="../Pages/activites_chorale.html">ACTIVITES DES CHORALE</a></li>
+                <li class="menu-deroulant"><a href="#">MOUVEMENTS DE</a>
+                    <ul class="sousmenu crocher_pour_naviguer">
+                        
                     </ul>
                 </li>
+                <li class="menu-deroulant"><a href="#">RESPONSABLES DES MOUVEMENTS DE</a>
+                    <ul class="sousmenu crocher_pour_naviguer_responsable">
+                        
+                    </ul>
                 </li>
+                <li class="menu-activite"><a href="../Pages/programme_semaine.html">PROGRAMME DE LA SEMAINE</a></li>
+                <li class="menu-activite"><a href="../Pages/responsables_eglise.html">LES RESPONSABLES DE L'EGLISE</a></li>
+                <li class="menu-activite"><a href="../Pages/creer_compte.html">ADMINISTRATEURS</a></li>
+                <li class="menu-activite"><a href="../Pages/liste_communaute.html">LES MOUVEMENTS ENREGISTRER</a></li>
+                <li class="menu-activite"><a href="../Pages/projets.html">PROJET</a></li>
+                <li class="menu-activite"><a href="../Pages/galerie.html">GALERIE</a></li>
             </ul>
+
 		</nav>
 	</header>
    <div class="contenu">
     <h1 class="paroisse"> PAROISSE AUTONOME DE MELEN</h1>
     <p class="ajouter_activite_btn">AJOUTER ACTIVITE</p>
     <section class="formulaire_saire_enregistrement">
-        <p class="titre">FORMULAIRE POUR SAISIR LES ACTIVITES DES HOMMES </p>
+        <p class="titre">FORMULAIRE POUR SAISIR LES ACTIVITES </p>
         <hr>
         <form action="" class="formulaire_saire formulaire_saire1">
             <select name="jour" id="" class="champ_jour">
@@ -60,10 +62,14 @@
                 <option value="SAMEDI">SAMEDI</option>
                 <option value="DIMANCHE">DIMANCHE</option>
             </select>
-            <input type="date" class="champ_saisi_date champ_saisi_date" name="nom_1" id="" placeholder="heure">
-            <label for="input-file" class="label-image">Ajouter photo</label>
-            <img src="../image/images.png" alt="" id="image_ajouter">
-            <input type="file" name="file" class="file" accept="image/jpeg, image/png ,image/jpg" id="input-file">
+            <select name="mouvement" id="" class="champ_mouvement">
+            </select>
+             <div class="champ">
+                <input type="date" class="champ_saisi_date champ_saisi_date" name="nom_1" id="" placeholder="heure">
+                <label for="input-file" class="label-image">Ajouter photo</label>
+                <img src="../image/images.png" alt="" id="image_ajouter">
+                <input type="file" name="file" class="file" accept="image/jpeg, image/png ,image/jpg" id="input-file">
+             </div>
             <textarea class="champ_saisi champ_saisi_nom0" name="nom" id="" cols="30" rows="10"
                 placeholder="SAISISSEZ La DESCRIPTION DE L'ACTIVITE ICI"></textarea>
             <input type="time" class=" champ_saisi_heure champ_saisi_heure0" name="nom_1" id="" placeholder="heure"
@@ -81,7 +87,7 @@
 
     <section class="modifier_activite">
         <div class="modifier_formulaire_saire_enregistrement">
-            <p class="titre">FORMULAIRE POUR LA MODIFICATION DES ACTIVITES DES HOMMES</p>
+            <p class="titre">FORMULAIRE POUR LA MODIFICATION DE L'ACTIVITE</p>
             <form action="" class=" formulaire_saire formulaire_saire2 formulaire_saire1">
                 <select name="jour" id="" class="champ_modifier">
                     <option value="">SELECTIONNEZ LE JOUR DE L'ACTIVITE</option>
@@ -93,11 +99,17 @@
                     <option value="SAMEDI">SAMEDI</option>
                     <option value="DIMANCHE">DIMANCHE</option>
                 </select>
-                <input type="date" class="champ_saisi_date champ_modifier_date" name="nom_1" id="" placeholder="heure">
-                <label for="input-file1" class="label-image">Ajouter photo</label>
-                <img src="../image/images.png" alt="" id="image_ajouter1">
-                <input type="file" name="file" class="file fil" accept="image/jpeg, image/png ,image/jpg"
-                    id="input-file1">
+                <select name="mouvement" id="" class="mouvement_modifier">
+                    <option value="" class="selection">SELECTIONNEZ LE MOUVEMENT</option>
+                </select>
+                <div class="champ">
+                    <input type="date" class="champ_saisi_date champ_modifier_date" name="nom_1" id="" placeholder="heure">
+                    <label for="input-file1" class="label-image">Ajouter photo</label>
+                    <img src="../image/images.png" alt="" id="image_ajouter1">
+                    <input type="file" name="file" class="file fil" accept="image/jpeg, image/png ,image/jpg"
+                        id="input-file1">
+                </div>
+
                 <textarea class="champ_saisi champ_saisi_nom0 champ_modifier_nom0" name="nom" id="" cols="30" rows="10"
                     placeholder="SAISISSEZ LE NOM DE L'ACTIVITE ICI"></textarea>
                 <input type="time" class=" champ_saisi_heure champ_saisi_heure0 champ_modifier_heure0" name="nom_1"
@@ -138,24 +150,11 @@
     </div>
 
     <div class="champ_vide">
-        <!-- <div class="alerte_champ_vide">
-            <span> VEILLEZ REMPLIRE BIEN LES CHAMPS S'IL VOUS PLAIT  </span>
-            <span> CAR VOUS AVEZ  PAS REMPLI LE CHAMPS HEURE OU DESCRIPTION </span>
-            <span>POUR COMPLETER  </span>
-            <p> <span class="recommence">OK</span> </p>
-        </div> -->
     </div>
 
-    <!-- <div class="suppression_champ">
-        <div class="alerte_supprimer_champ">
-            <span>voulez vous vraiment les champs</span>
-            <span> </span>
-            <p> <span class="non_supprimer_champ">Non </span> <span class="oui_supprimer_champ">Oui</span> </p>
-         </div>
-    </div> -->
 
 
 </body>
-<script src="../js/activites_hommes.js"></script>
+<script src="../js/mouvements.js"></script>
 
 </html>
