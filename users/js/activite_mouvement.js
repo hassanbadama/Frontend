@@ -29,7 +29,7 @@ const url = new URL(window.location.href);
 // Récupérer les paramètres
 const nomcommunaute = url.searchParams.get('nomcommunaute');
 //ajouter dynamiquement le nom des communautés
-const communaute = ` <span>COMMUNAUTE ${nomcommunaute} </span>`
+const communaute = ` <span>MOUVEMENT DE ${nomcommunaute} </span>`
 const creaction_affichage_activite = document.querySelector(".titre_texte")
 creaction_affichage_activite.insertAdjacentHTML("beforeend", communaute)
 

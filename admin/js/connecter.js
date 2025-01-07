@@ -1,4 +1,5 @@
 document.querySelector(".connecter").addEventListener("click", function (event){
+
     event.preventDefault()
     console.log("cliquer connecter");
     const user = document.querySelector(".user")
@@ -22,7 +23,7 @@ document.querySelector(".connecter").addEventListener("click", function (event){
           console.log("inconnu");
           
            document.querySelector(".erreur_user").textContent = "utilisateur inconnu"
-          
+         //  Afficher_responsable_eglise()
         }
         else if (data.message == "mot de passe incorrect") {
           console.log(" mdp inconnu");
@@ -79,3 +80,45 @@ function enregistrement_admin(user,mdp,fichier) {
       })
   
 }
+
+
+
+
+
+
+afficher_admin()
+function afficher_admin() {
+  fetch("http://localhost:3000/api/auth/afficher_admin")
+      .then((res) => res.json())
+      .then((data) => {
+          console.log("Afficher_afficher_admin");
+          console.log(data);
+          if (data.length==0) {
+            console.log("le tableau est vide");
+            enregistrement_admin1("0000","0000")
+            console.log("user et mdp par defaut ajouter");
+          }
+      });
+}
+
+function enregistrement_admin1(user,mdp) {
+  let Formdata = new FormData()
+  Formdata.append("nom_user", user)
+  Formdata.append("mdp_user", mdp)
+  Formdata.append("image","")
+
+  fetch("http://localhost:3000/api/auth/ajouter_admin", {
+      method: 'POST',
+      headers: { "Authorization": "Bearer" },
+      body: Formdata
+  }).then((res) => res.json())
+      .then(data => {
+          console.log("ajour usr admin ajjj");
+          console.log(data);
+         // document.location.href = `connecter.html`;
+
+      })
+  
+}
+
+
