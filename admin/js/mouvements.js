@@ -18,7 +18,7 @@ crocher_communaute.insertAdjacentHTML("beforeend", creer)
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -173,7 +173,7 @@ function Enregistrer_activite(tableau, jour_activite, date_activite, image,mouve
   Formdata.append("image", image)
   console.log(tableau);
   console.log(jour_activite);
-  fetch("http://localhost:3000/api/auth/activites_mouvements", {
+  fetch(`${process.env.url_backend}/api/auth/activites_mouvements`, {
     method: 'POST',
     headers: { "Authorization": `Bearer ${token}` },
     body: Formdata
@@ -198,7 +198,7 @@ function Afficher_activites() {
   let tableau_jour = ["LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"]
   console.log(tableau_jour);
   
-  fetch("http://localhost:3000/api/auth/Afficher_mouvements")
+  fetch(`${process.env.url_backend}/api/auth/Afficher_mouvements`)
     .then((res) => res.json())
     .then((data) => {
       console.log("Afficher_programme_semaine");
@@ -299,7 +299,7 @@ function suppression_activites() {
       document.querySelector(".confiermer_supprimer").style.display = "block"
       //clique sur oui pour valider la suppression de activité
       document.querySelector(".oui").addEventListener("click", function (event) {
-        fetch(`http://localhost:3000/api/auth/suppression_mouvements/${id}`, {
+        fetch(`${process.env.url_backend}/api/auth/suppression_mouvements/${id}`, {
           method: "DELETE",
           headers:  { "Authorization": `Bearer ${token}` }
         })
@@ -342,7 +342,7 @@ function modifier_activites() {
         document.querySelector(".formulaire_saire_enregistrement").style.display = "none"
         //fermer affichage des activite
         document.querySelector(".crocher_affichage").style.display = "none"
-        fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_mouvements/${id}`)
+        fetch(`${process.env.url_backend}/api/auth/Recherche_pour_modifier_mouvements/${id}`)
           .then((res) => res.json())
           .then((data) => {
             compteur_nombre_champs_modifier = data.tableau_activite.length
@@ -441,7 +441,7 @@ function modifier_activites() {
     Formdata.append("image", image.files[0])
     //si les champs de modifications des activites sont bien rempli
     if (validation_modification) {
-      fetch(`http://localhost:3000/api/auth/modifier_mouvements/${id}`, {
+      fetch(`${process.env.url_backend}/api/auth/modifier_mouvements/${id}`, {
         method: 'put',
         headers: {
           "Authorization": `Bearer ${token}` 

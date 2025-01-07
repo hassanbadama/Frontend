@@ -1,6 +1,6 @@
 Afficher_liste_communautes_sur_nav_bar()
 function Afficher_liste_communautes_sur_nav_bar() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -65,7 +65,7 @@ function afficher_programmes_semaine(){
   //pour donner le noms des classes differents pour les affichage
    let idnom = 0
     let tableau_jour = ["LUNDI","MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI","DIMANCHE"]
-    fetch("http://localhost:3000/api/auth/Afficher_programmes_semaine")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_programmes_semaine`)
     .then((res) => res.json())
     .then((data) => {
     console.log("Afficher_programme_semaine");

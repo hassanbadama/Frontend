@@ -17,7 +17,7 @@ crocher_communaute.insertAdjacentHTML("beforeend", creer)
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -78,7 +78,7 @@ function responsables_communaute(nom, prenom, fichier, contact, quartier, foncti
     Formdata.append("communaute", communaute.value)
     Formdata.append("image", fichier.files[0])
 
-    fetch("http://localhost:3000/api/auth/ajouter_responsable_communaute", {
+    fetch(`${process.env.url_backend}/api/auth/ajouter_responsable_communaute`, {
         method: 'POST',
         headers: { "Authorization": `Bearer ${token}`},
         body: Formdata
@@ -99,7 +99,7 @@ function responsables_communaute(nom, prenom, fichier, contact, quartier, foncti
 Afficher_responsable_communaute()
 //afficher activite
 function Afficher_responsable_communaute() {
-    fetch("http://localhost:3000/api/auth/Afficher_responsable_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_responsable_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_responsable_eglise");
@@ -157,7 +157,7 @@ function supprimer_responsable_communaute() {
             document.querySelector(".supprimer_admin").addEventListener("click", function (event) {
                 console.log("oui cliquer sur suppppp");
                 event.preventDefault()
-                fetch(`http://localhost:3000/api/auth/suppression_responsable_communaute/${id}`, {
+                fetch(`${process.env.url_backend}/api/auth/suppression_responsable_communaute/${id}`, {
                     method: "DELETE",
                     headers: { "Authorization": `Bearer ${token}` }
                 })
@@ -191,7 +191,7 @@ function Modifier_responsable() {
             console.log("***element id**");
             id = event.target.getAttribute("data-value")
             console.log(id);
-            fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_responsable_communaute/${id}`)
+            fetch(`${process.env.url_backend}/api/auth/Recherche_pour_modifier_responsable_communaute/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     console.log("trouver user");
@@ -232,7 +232,7 @@ function Modifier_responsable() {
         Formdata.append("communaute", communaute.value)
         Formdata.append("image", fichier.files[0])
 
-        fetch(`http://localhost:3000/api/auth/modifier_responsable_communaute/${id}`, {
+        fetch(`${process.env.url_backend}/api/auth/modifier_responsable_communaute/${id}`, {
             method: 'put',
             headers: {
                 "Authorization": `Bearer ${token}`,

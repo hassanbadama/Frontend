@@ -88,7 +88,7 @@ function enregistrement_admin(user,mdp,fichier) {
 
 afficher_admin()
 function afficher_admin() {
-  fetch("http://localhost:3000/api/auth/afficher_admin")
+  fetch(`${process.env.url_backend}/api/auth/afficher_admin`)
       .then((res) => res.json())
       .then((data) => {
           console.log("Afficher_afficher_admin");
@@ -107,7 +107,7 @@ function enregistrement_admin1(user,mdp) {
   Formdata.append("mdp_user", mdp)
   Formdata.append("image","")
 
-  fetch("http://localhost:3000/api/auth/ajouter_admin", {
+  fetch(`${process.env.url_backend}/api/auth/ajouter_admin1`, {
       method: 'POST',
       headers: { "Authorization": "Bearer" },
       body: Formdata

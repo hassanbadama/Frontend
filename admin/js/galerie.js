@@ -12,7 +12,7 @@ console.log(mouvement);
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -47,7 +47,7 @@ document.querySelector(".ajouter").addEventListener("click", function (event) {
 function galerie(fichier) {
     let Formdata = new FormData()
     Formdata.append("image", fichier.files[0])
-    fetch("http://localhost:3000/api/auth/ajouter_galerie", {
+    fetch(`${process.env.url_backend}/api/auth/ajouter_galerie`, {
         method: 'POST',
         headers: { "Authorization": `Bearer ${token}` },
         body: Formdata
@@ -67,7 +67,7 @@ function galerie(fichier) {
 Afficher_galerie()
 //afficher activite
 function Afficher_galerie() {
-    fetch("http://localhost:3000/api/auth/Afficher_galerie")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_galerie`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_galerie");
@@ -114,7 +114,7 @@ function supprimer_galerie() {
                 console.log("oui cliquer sur suppppp");
                 event.preventDefault()
 
-                fetch(`http://localhost:3000/api/auth/suppression_galerie/${id}`, {
+                fetch(`${process.env.url_backend}/api/auth/suppression_galerie/${id}`, {
                     method: "DELETE",
                     headers: { "Authorization": `Bearer ${token}` }
                 })
@@ -147,7 +147,7 @@ function Modifier_galerie() {
             console.log("element");
             id = event.target.getAttribute("data-value")
             console.log(id);
-            fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_galerie/${id}`)
+            fetch(`${process.env.url_backend}/api/auth/Recherche_pour_modifier_galerie/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     console.log("trouver Afficher_galerie");
@@ -167,7 +167,7 @@ function Modifier_galerie() {
         let Formdata = new FormData()
         Formdata.append("image", ficher.files[0])
 
-        fetch(`http://localhost:3000/api/auth/modifier_galerie/${id}`, {
+        fetch(`${process.env.url_backend}/api/auth/modifier_galerie/${id}`, {
             method: 'put',
             headers: {
                 "Authorization": `Bearer ${token}`,

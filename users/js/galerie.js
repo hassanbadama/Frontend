@@ -1,6 +1,6 @@
 Afficher_liste_communautes_sur_nav_bar()
 function Afficher_liste_communautes_sur_nav_bar() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -31,7 +31,7 @@ const nomcommunaute = url.searchParams.get('nomcommunaute');
 Afficher_galerie()
 //afficher activite
 function Afficher_galerie() {
-    fetch("http://localhost:3000/api/auth/Afficher_galerie")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_galerie`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher galerie");

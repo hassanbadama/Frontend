@@ -15,7 +15,7 @@ console.log(id_connecter);
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -46,7 +46,7 @@ Affiche_connecter()
 function Affiche_connecter() {
     console.log("id***");
     console.log(id_connecter);
-    fetch(`http://localhost:3000/api/auth/Rechercher_admin/${id_connecter}`)
+    fetch(`${process.env.url_backend}/api/auth/Rechercher_admin/${id_connecter}`)
         .then((res) => res.json())
         .then((data) => {
             construction_affiche_admin(data.nom_user, data.file, data._id)

@@ -21,7 +21,7 @@ document.querySelector(".ajouter").addEventListener("click", function (event) {
 function liste_communautes(nom) {
     let Formdata = new FormData()
     Formdata.append("nom", nom.value)
-    fetch("http://localhost:3000/api/auth/ajouter_communaute", {
+    fetch(`${process.env.url_backend}/api/auth/ajouter_communaute`, {
         method: 'POST',
         headers: { "Authorization": `Bearer ${token}` },
         body: Formdata
@@ -39,7 +39,7 @@ function liste_communautes(nom) {
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -99,7 +99,7 @@ function supprimer_liste_communautes() {
                 console.log("oui cliquer sur suppppp");
                 event.preventDefault()
 
-                fetch(`http://localhost:3000/api/auth/suppression_communaute/${id}`, {
+                fetch(`${process.env.url_backend}/api/auth/suppression_communaute/${id}`, {
                     method: "DELETE",
                     headers: { "Authorization": `Bearer ${token}` }
                 })
@@ -132,7 +132,7 @@ function Modifier_liste_communautes() {
             console.log("element");
             id = event.target.getAttribute("data-value")
             console.log(id);
-            fetch(`http://localhost:3000/api/auth/Recherche_pour_modifier_communaute/${id}`)
+            fetch(`${process.env.url_backend}/api/auth/Recherche_pour_modifier_communaute/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     console.log("trouver communaute");
@@ -152,7 +152,7 @@ function Modifier_liste_communautes() {
         let Formdata = new FormData()
         Formdata.append("nom", nom.value)
 
-        fetch(`http://localhost:3000/api/auth/modifier_communaute/${id}`, {
+        fetch(`${process.env.url_backend}/api/auth/modifier_communaute/${id}`, {
             method: 'put',
             headers: {
                 "Authorization": `Bearer ${token}`,

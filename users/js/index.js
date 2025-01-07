@@ -1,6 +1,6 @@
 Afficher_liste_communautes_sur_nav_bar()
 function Afficher_liste_communautes_sur_nav_bar() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -26,7 +26,7 @@ function Afficher_liste_communautes_sur_nav_bar() {
 
 Afficher_galerie()
 function Afficher_galerie() {
-    fetch("http://localhost:3000/api/auth/Afficher_galerie")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_galerie`)
         .then((res) => res.json())
         .then((slides) => {
             console.log("Afficher_galerie");
@@ -96,7 +96,7 @@ function Images_banner(slides) {
 Afficher_responsable_eglise()
 //afficher activite
 function Afficher_responsable_eglise() {
-    fetch("http://localhost:3000/api/auth/Afficher_responsable_eglise")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_responsable_eglise`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_responsable_eglise");
@@ -149,7 +149,7 @@ afficher_activite()
 function afficher_activite(){
 //pour donner le noms des classes differents pour les affichage
   let tableau_jour = ["LUNDI","MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI","DIMANCHE"]
-  fetch("http://localhost:3000/api/auth/Afficher_programmes_semaine")
+  fetch(`${process.env.url_backend}/api/auth/Afficher_programmes_semaine`)
   .then((res) => res.json())
   .then((data) => {
   console.log("Afficher choralee");
@@ -206,7 +206,7 @@ for (let j = 0; j <= tableau_activite.length - 1; j++) {
 Afficher_projet()
 //afficher activite
 function Afficher_projet() {
-    fetch("http://localhost:3000/api/auth/Afficher_projet")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_projet`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher projet");

@@ -5,7 +5,7 @@ if (!token) {
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -139,7 +139,7 @@ function Enregistrer_programme(tableau, jour_activite, date_activite, image) {
   Formdata.append("image", image)
   console.log(tableau);
   console.log(jour_activite);
-  fetch("http://localhost:3000/api/auth/programmes_semaine", {
+  fetch(`${process.env.url_backend}/api/auth/programmes_semaine`, {
     method: 'POST',
     headers: { "Authorization": `Bearer ${token}` },
     body: Formdata
@@ -171,7 +171,7 @@ function Afficher_programme_semaine() {
   let idnom = 0
 
   let tableau_jour = ["LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI", "DIMANCHE"]
-  fetch("http://localhost:3000/api/auth/Afficher_programmes_semaine")
+  fetch(`${process.env.url_backend}/api/auth/Afficher_programmes_semaine`)
     .then((res) => res.json())
     .then((data) => {
       console.log("Afficher_programme_semaine");
@@ -264,7 +264,7 @@ function suppression_programme_semaine() {
       document.querySelector(".confiermer_supprimer").style.display = "block"
       //clique sur oui pour valider la suppression programmes_semaine
       document.querySelector(".oui").addEventListener("click", function (event) {
-        fetch(`http://localhost:3000/api/auth/suppression_programmes_semaine/${id}`, {
+        fetch(`${process.env.url_backend}/api/auth/suppression_programmes_semaine/${id}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -307,7 +307,7 @@ function modifier_programme_semaine() {
         document.querySelector(".formulaire_saire_enregistrement").style.display = "none"
         //fermer affichage programmes_semaine
         document.querySelector(".crocher_affichage").style.display = "none"
-        fetch(`http://localhost:3000/api/auth/Recherche_pour_supprimer_programmes_semaine/${id}`)
+        fetch(`${process.env.url_backend}/api/auth/Recherche_pour_supprimer_programmes_semaine/${id}`)
           .then((res) => res.json())
           .then((data) => {
             compteur_nombre_champs_modifier = data.tableau_activite.length
@@ -400,7 +400,7 @@ function modifier_programme_semaine() {
     Formdata.append("image", image.files[0])
     //si les champs de modifications des programmes_semaine sont bien rempli
     if (validation_modification) {
-      fetch(`http://localhost:3000/api/auth/modifier_programmes_semaine/${id}`, {
+      fetch(`${process.env.url_backend}/api/auth/modifier_programmes_semaine/${id}`, {
         method: 'put',
         headers: {
           "Authorization": `Bearer ${token}`,

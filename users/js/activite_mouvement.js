@@ -1,6 +1,6 @@
 Afficher_liste_communautes_sur_nav_bar()
 function Afficher_liste_communautes_sur_nav_bar() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -37,7 +37,7 @@ creaction_affichage_activite.insertAdjacentHTML("beforeend", communaute)
 Afficher_responsable_communaute()
 //afficher activite
 function Afficher_responsable_communaute() {
-    fetch("http://localhost:3000/api/auth/Afficher_responsable_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_responsable_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_responsable_communaute");
@@ -97,7 +97,7 @@ function construction_affiche_responsable(nom, prenom, imag, fonction) {
 Afficher_activite_communaute()
 //afficher activite
 function Afficher_activite_communaute() {
-    fetch("http://localhost:3000/api/auth/Afficher_mouvements")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_mouvements`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_activite_eglise");

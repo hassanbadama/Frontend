@@ -5,7 +5,7 @@ if (!token) {
 
 Afficher_liste_des_mouvements()
 function Afficher_liste_des_mouvements() {
-    fetch("http://localhost:3000/api/auth/Afficher_communaute")
+    fetch(`${process.env.url_backend}/api/auth/Afficher_communaute`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_communaute");
@@ -51,7 +51,7 @@ function enregistrement_admin(user,mdp,fichier) {
     Formdata.append("mdp_user", mdp.value)
     Formdata.append("image", fichier.files[0])
 
-    fetch("http://localhost:3000/api/auth/ajouter_admin", {
+    fetch(`${process.env.url_backend}/api/auth/ajouter_admin`, {
         method: 'POST',
         headers: { "Authorization": `Bearer ${token}`  },
         body: Formdata
@@ -72,7 +72,7 @@ function enregistrement_admin(user,mdp,fichier) {
 afficher_admin()
 //afficher activite
 function afficher_admin() {
-    fetch("http://localhost:3000/api/auth/afficher_admin")
+    fetch(`${process.env.url_backend}/api/auth/afficher_admin`)
         .then((res) => res.json())
         .then((data) => {
             console.log("Afficher_afficher_admin");
@@ -116,7 +116,7 @@ function supprimer_admin() {
                 console.log("oui cliquer sur suppppp");
                 event.preventDefault()
                 
-                fetch(`http://localhost:3000/api/auth/suppression_admin/${id}`, {
+                fetch(`${process.env.url_backend}/api/auth/suppression_admin/${id}`, {
                     method: "DELETE",
                     headers: { "Authorization": `Bearer ${token}` }
                 })
